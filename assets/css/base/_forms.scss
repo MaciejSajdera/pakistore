@@ -1,0 +1,184 @@
+/* BUTTONS */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border: 1px solid;
+	border-color: $color__border-button;
+	border-radius: 0px;
+	background: $color__background-button;
+	color: rgba(0, 0, 0, 0.8);
+	@include font-size(0.75);
+	line-height: 1;
+	padding: 0.6em 1em 0.4em;
+
+	&:active,
+	&:focus,
+	&:hover {
+		border-color: $color__border-button-focus;
+		outline: none;
+	}
+}
+
+/* FIELDS */
+
+textarea {
+	padding-left: 3px;
+	width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"] {
+	padding: 3px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+select,
+textarea {
+	color: $color__text-input;
+	border: 1px solid $color__border-input;
+	border-radius: 0px;
+
+	&:focus {
+		color: $color__text-input-focus;
+	}
+}
+
+.woocommerce-ResetPassword {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+
+	.password-input {
+		max-width: 300px;
+		margin: auto;
+	}
+
+	.show-password-input {
+		position: absolute;
+		right: 0.5em;
+		top: 0em;
+		cursor: pointer;
+	}
+}
+
+.lost_password {
+	a {
+		font-weight: 600;
+		color: $color_white_text;
+	}
+}
+
+.my-wooselect,
+.my-wooselect:visited,
+ul.chosen-choices {
+	// margin-bottom: 4em !important;
+	position: relative;
+
+	@media screen and (min-width: 992px) {
+		z-index: 3;
+		top: 0;
+		right: 0;
+	}
+
+	// background-color: $color_dark_blue !important;
+	width: fit-content !important;
+	color: $color_white_text !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
+	transition: all 0.7s ease-in-out !important;
+	border: 0;
+	border-bottom: 1px solid $color__border-input !important;
+	outline: none !important;
+	cursor: pointer;
+	min-width: 240px;
+	padding: 0 0 0.25em 0 !important;
+	text-align: left;
+
+	// &:hover {
+	// 	background-color: transparent !important;
+	// 	border: 1px solid $color_dark_blue !important;
+	// 	color: $color_dark_blue !important;
+	// }
+
+	&:focus,
+	&:active,
+	&:focus-within,
+	&:hover {
+		border-bottom: 1px solid $color_dark_blue !important;
+	}
+
+	&:after {
+		content: "";
+		background: url(../dist/svg/arrow_down_grey.svg) no-repeat;
+		// background-size: contain;
+		background-position: center;
+		position: absolute;
+		display: block;
+		width: 20px;
+		height: 20px;
+		top: 35%;
+		right: 0;
+		display: flex;
+		align-items: center;
+		pointer-events: none;
+
+		transform: translateY(-50%);
+	}
+
+	@media screen and (max-width: 992px) {
+		width: 100% !important;
+	}
+
+	select {
+		cursor: pointer;
+	}
+
+	select,
+	input {
+		// @include fluid-type($min_width, $max_width, 14px, 16px);
+		font-weight: 600 !important;
+		font-size: 16px !important;
+		padding: 0 !important;
+		font-family: $font__main !important;
+	}
+
+	li.search-choice {
+		padding-left: 0 !important;
+		margin-left: 0 !important;
+		margin-right: 1em !important;
+	}
+
+	select:first-child {
+		// background-color: $color_dark_blue !important;
+		// width: fit-content !important;
+
+		width: 100% !important;
+		// color: $color_white_text !important;
+		// padding: 0.5em 4em 0.5em 2em !important;
+		// font-weight: 600 !important;
+		// border-radius: 100rem !important;
+		text-decoration: none !important;
+		transition: all 0.7s ease-in !important;
+		// border: 1px solid $color_dark_blue !important;
+		border: none;
+		// @include fluid-type($min_width, $max_width, 13px, 15px);
+
+		option {
+			background-color: $color_white_text !important;
+			color: black;
+			width: 100%;
+			padding-left: 1em !important;
+		}
+	}
+}

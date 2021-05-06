@@ -1,0 +1,69 @@
+<?php
+
+/*
+ * Template Name: Home Page Template
+ * description: >-
+  Page template without sidebar
+ */
+
+global $post;
+
+get_header();
+?>
+
+	<div class="home-main">
+
+		<div class="home-main__top-wrapper">
+
+			<div class="has-aside--main home-main__top-content">
+
+				<div class="welcome-view">
+					<?php
+						get_template_part( 'template-parts/home-carousel', 'page' );
+					?>
+
+					<div class="content-container">
+						<?php
+							get_template_part( 'template-parts/home-advantages', 'page' );
+						?>
+					</div>
+				</div>
+
+				<div class="content-container">
+					<?php
+						get_template_part( 'template-parts/special-categories-menu', 'page' );
+					?>
+				</div>
+
+				<div class="content-container">
+					<?php
+						get_template_part( 'template-parts/home-categories-display', 'page' );
+					?>
+				</div>
+
+				<?php
+					// get_template_part( 'template-parts/home-categories-descriptions-random', 'page' );
+				?>
+
+			</div>
+
+		</div>
+
+		<div class="content-container">
+			<?php
+				get_template_part( 'template-parts/home-brands-showcase', 'page' );
+			?>
+		</div>
+
+		<div class="content-container">
+			<?php
+				get_template_part( 'template-parts/home-content-blog', 'page' );
+			?>
+		</div>
+
+
+</div>
+
+	
+<?php
+get_footer();
