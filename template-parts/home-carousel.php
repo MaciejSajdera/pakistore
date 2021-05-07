@@ -6,6 +6,8 @@
  *
  * @package pakistore
  */
+$carousel_image_1 = get_field('carousel_image_1', $post->ID);
+$carousel_image_position_1 = get_field('carousel_image_position_1', $post->ID);
 $carousel_image_1_header = get_field('carousel_image_1_header', $post->ID);
 $carousel_image_1_subheader = get_field('carousel_image_1_subheader', $post->ID);
 $carousel_image_2_header = get_field('carousel_image_2_header', $post->ID);
@@ -20,7 +22,7 @@ $carousel_image_3_subheader = get_field('carousel_image_3_subheader', $post->ID)
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <!-- Slides -->
-		<div class="swiper-slide" style="background-image: url(<?php echo get_field('carousel_image_1', $post->ID) ?>);">
+		<div class="swiper-slide" style="background-image: url(<?php echo $carousel_image_1 ?>); background-position: <?php echo $carousel_image_position_1 ?>;">
 		<div class="parallax-title" data-swiper-parallax="-100">
 
 			<?php

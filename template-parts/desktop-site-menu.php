@@ -1,7 +1,8 @@
 			<div class="site-menu site-menu-desktop">
 
 				<div class="site-menu__wrapper">
-				<?php
+
+					<?php
 						wp_nav_menu(
 							array(
 								'theme_location' => 'menu-1',

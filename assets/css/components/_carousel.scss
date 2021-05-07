@@ -1,5 +1,6 @@
 .main-carousel {
 	height: 70vh;
+	width: 100%;
 
 	@media screen and (min-height: 736px) and (max-width: 992px) {
 		height: 70vh;
@@ -7,13 +8,14 @@
 
 	@media screen and (min-width: 992px) {
 		height: 35vh;
-		height: calc(var(--vh, 1vh) * 50);
+		height: calc(var(--vh, 1vh) * 40);
 		margin-bottom: 0em;
 	}
 
 	.swiper-slide {
 		background-repeat: no-repeat;
 		background-size: cover;
+		background-position: center;
 
 		@media screen and (max-width: 992px) {
 			background-position: center;
@@ -107,6 +109,7 @@
 
 .brands-carousel {
 	padding: 4em 0;
+	width: 100%;
 
 	@media screen and (max-width: 992px) {
 		padding: 0;

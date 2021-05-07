@@ -9,7 +9,7 @@
 
 ?>
 
-<section class="brands-carousel blog-posts-header">
+<div class="brands-carousel blog-posts-header">
 	<h3>Marki</h3>
   <div class="swiper-container-brands">
     <!-- Additional required wrapper -->
@@ -46,4 +46,4 @@
 		?>
 	</div>
   </div>
-</section>
+</div>

@@ -10,7 +10,7 @@ footer#colophon {
 		text-align: left;
 	}
 
-	background: $color__background-dark-navy;
+	background: $color__background-main-theme--dark;
 
 	.page {
 		height: 100%;
@@ -65,7 +65,7 @@ footer#colophon {
 		display: flex;
 		flex-flow: column;
 		justify-content: space-between;
-		background: $color__background-dark-navy;
+		background: $color__background-main-theme--dark;
 
 		// @media screen and (min-width: 992px) {
 		// 	height: 50%;

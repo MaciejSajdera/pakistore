@@ -200,8 +200,9 @@ function is_blog () {
 
 
 function wpb_add_google_fonts() {
-	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,600;0,700;1,400&display=swap', false );
+	// wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,600;0,700;1,400&display=swap', false );
 	// wp_enqueue_style( 'wpb-google-fonts2', 'https://fonts.googleapis.com/css2?family=K2D:wght@300;700', false ); 
+	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap', false );
 }
 add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
 
@@ -227,11 +228,12 @@ function my_wp_nav_menu_objects( $items, $args ) {
 		// $item->title .= '<span>'. $item->classes . '</span>';
 		// vars
 		$menu_thumbnail_image = get_field('menu_thumbnail_image', $item);
+		$menu_thumbnail_image_position = get_field('menu_thumbnail_image_position', $item);
 		
 				// append bg image
 		if( $menu_thumbnail_image ) {
 					// $item->title .= '<span>'. $item->classes . '</span>';
-			$item->title .= ' <span class="menu-thumbnail-image test" style="background-image: url('. $menu_thumbnail_image .')"></span>';
+			$item->title .= ' <span class="menu-thumbnail-image test" style="background-image: url('. $menu_thumbnail_image .'); background-position: '.$menu_thumbnail_image_position.'"></span>';
 		
 		}
 	}

@@ -5,8 +5,9 @@ $color__background-hr: #ccc;
 $color__background-button: #e6e6e6;
 $color__background-pre: #eee;
 $color__background-ins: #fff9c0;
-$color__background-dark-navy: #012241;
-$color__background-main-theme: #099bde;
+
+$color__background-main-theme: #0c7ec3;
+$color__background-main-theme--dark: #474596;
 $color_red: #ff0000;
 
 $color_white_text: #fff;
@@ -35,10 +36,10 @@ $color__border-input: #ccc;
 $color__border-abbr: #666;
 
 /* TYPOGRAPHY */
-$font__main: "Cabin", sans-serif;
-$font_headers: "Cabin", sans-serif;
+$font__main: "Quicksand", sans-serif;
+$font_headers: "Quicksand", sans-serif;
+$font_anchors: "Quicksand", sans-serif;
 
-$font_anchors: "Cabin", sans-serif;
 $font__code: monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 $font__pre: "Courier 10 Pitch", courier, monospace;
 $font__line-height-body: 1.5;
