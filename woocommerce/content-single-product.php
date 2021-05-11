@@ -32,29 +32,68 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div class="woocommerce-archive__wrapper">
+<!-- <div class="woocommerce-archive__wrapper"> -->
 
 
 		<?php
-			get_template_part( 'template-parts/desktop-shop-menu', 'page' );
+			// get_template_part( 'template-parts/desktop-shop-menu', 'page' );
 		?>
 
-	<div class="woocommerce-archive__right-column">
+	<!-- <div class="woocommerce-archive__right-column"> -->
 
 		<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 
+			<div class="product_title__wrapper">
+
+			
 			<?php
-			/**
-			 * Hook: woocommerce_before_single_product_summary.
-			 *
-			 * @hooked woocommerce_show_product_sale_flash - 10
-			 * @hooked woocommerce_show_product_images - 20
-			 */
-			do_action( 'woocommerce_before_single_product_summary' );
+				do_action( 'my_woocommerce_before_single_product' );
 			?>
+
+			</div>
+
+			<?php
+				/**
+				 * Hook: woocommerce_before_single_product_summary.
+				 *
+				 * @hooked woocommerce_show_product_sale_flash - 10
+				 * @hooked woocommerce_show_product_images - 20
+				 */
+				do_action( 'woocommerce_before_single_product_summary' );
+			?>
+
 
 			<div class="summary entry-summary">
 				<?php
+
+				/** Product Info Table */
+
+					$terms = get_the_terms( $post->ID, 'producent' );
+							
+					if ($terms) {
+						foreach ( $terms as $term ){
+							$producent_name = $term->name;
+							$imageURL = get_field("producent_logo", $term);
+							$producent_link = get_term_link( $term );
+
+							if ($imageURL) :
+							echo '<div class="product-info"><div class="product-info__label">Producent:</div><a class="product-info__value" href="'.$producent_link.'"><img src="'.$imageURL.'" alt="'.$producent_name.'"></a></div>';
+							else :
+							echo '<div class="product-info"><div class="product-info__label">Producent:</div><a class="product-info__value" href="'.$producent_link.'">' .$producent_name.'</a></div>';
+							endif;
+						}
+					}
+
+					$availbility_status;
+
+					if($product->is_in_stock()) {
+						$availbility_status = '<span class="product-available">Dostępne</span>';
+					} else {
+						$availbility_status = '<span class="product-notavailable">Niedostępne</span>';
+					}
+
+					echo '<div class="product-info"><div class="product-info__label">Dostępność:</div><div class="product-info__value">'.$availbility_status.'</div></div>';
+
 				/**
 				 * Hook: woocommerce_single_product_summary.
 				 *
@@ -68,7 +107,11 @@ if ( post_password_required() ) {
 				 * @hooked WC_Structured_Data::generate_product_data() - 60
 				 */
 				do_action( 'woocommerce_single_product_summary' );
-				?>
+
+
+	
+			?>
+
 			</div>
 
 			<?php
@@ -84,7 +127,10 @@ if ( post_password_required() ) {
 
 		</div>
 		
-	</div>	<!-- woocommerce-archive__right-column -->
-</div> <!-- woocommerce-archive__wrapper -->
+	<!-- </div> -->
+		<!-- woocommerce-archive__right-column -->
+<!-- </div>  -->
+<!-- woocommerce-archive__wrapper -->
+
 
 <?php do_action( 'woocommerce_after_single_product' ); ?>

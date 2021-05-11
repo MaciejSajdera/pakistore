@@ -85,6 +85,10 @@ ul.chosen-choices {
 	// margin-bottom: 4em !important;
 	position: relative;
 
+	select {
+		background: transparent;
+	}
+
 	@media screen and (min-width: 992px) {
 		z-index: 3;
 		top: 0;

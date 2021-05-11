@@ -230,7 +230,7 @@ window.addEventListener("DOMContentLoaded", event => {
 				const myBackButton = document.createElement("LI");
 				myBackButton.id = "back-button";
 				myBackButton.classList.add("back-button");
-				myBackButton.innerText = "Powrót";
+				myBackButton.innerText = e.target.previousElementSibling.innerText;
 
 				const submenu = e.target.nextElementSibling;
 
@@ -243,7 +243,9 @@ window.addEventListener("DOMContentLoaded", event => {
 
 				appendButton();
 
-				submenu.classList.add("sub-menu--expanded");
+				// e.target.closest("UL").classList.add("move-back");
+
+				submenu.classList.add("sub-menu--expanded", "sub-menu--visible");
 
 				//delay
 				if (wooMenu) {
@@ -255,33 +257,18 @@ window.addEventListener("DOMContentLoaded", event => {
 				myBackButton.addEventListener("click", function(e) {
 					const submenuExpanded = this.closest(".sub-menu--expanded");
 					submenuExpanded.classList.remove("sub-menu--expanded");
-					this.remove();
+
+					// const menuMovedBack = document.querySelector(".move-back");
+					// menuMovedBack.classList.remove("move-back");
+
+					setTimeout(() => {
+						this.remove();
+						submenu.classList.remove("sub-menu--visible");
+					}, 500);
+
 					backButtonAppended = false;
 				});
-			}
-
-			// if (
-			// 	e.target.classList.contains("mobile-list-title") ||
-			// 	(e.target.parentNode &&
-			// 		e.target.parentNode.classList.contains("mobile-list-title"))
-			// ) {
-			// 	console.log("category");
-			// 	const categoryToggleMobile = document.querySelector(
-			// 		".mobile-list-title"
-			// 	);
-			// 	const categoryList = document.querySelector(".menu-woomenu-container");
-			// 	const pageMenu = document.querySelector("#menu-menu-1");
-			// 	const shopMenu = document.querySelector(".shop-menu");
-			// 	const siteNav = document.querySelector("#site-navigation");
-
-			// 	categoryList.classList.toggle("category-menu-toggled");
-			// 	pageMenu.classList.toggle("mobile-header-middle-hidden");
-			// 	shopMenu.classList.toggle("show-categories-menu");
-
-			// 	categoryToggleMobile.classList.toggle("mobile-list-title-toggled");
-			// }
-			else {
-				console.log("returning");
+			} else {
 				return;
 			}
 		});

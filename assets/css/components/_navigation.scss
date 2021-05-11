@@ -94,11 +94,6 @@
 	}
 }
 
-.current-menu-item {
-	// color: $color_dark_blue;
-	border-bottom: 3px solid $color__background-main-theme;
-}
-
 .header-middle {
 	display: flex;
 	width: 100%;
@@ -131,6 +126,17 @@
 			// grid-column-start: 1;
 			// grid-row-start: 1;
 			// grid-column-end: 1;
+		}
+	}
+
+	@media screen and (min-width: 992px) {
+		// & > * {
+		// 	width: 25% !important;
+		// }
+
+		.site-branding,
+		.shop-icons-wrapper-desktop {
+			width: 25% !important;
 		}
 	}
 }
@@ -495,7 +501,7 @@
 .promo-navigation {
 	.top-promo {
 		position: relative;
-		width: 100vw;
+		width: 100%;
 		display: flex;
 		align-self: center;
 		text-transform: uppercase;
@@ -509,6 +515,7 @@
 		@include fluid-type($min_width, $max_width, 12px, 16px);
 
 		@media screen and (min-width: 992px) {
+			width: 100vw;
 			padding: 0 30%;
 			margin: 0 0 1em 0;
 			// height: 1.5em;
@@ -781,8 +788,8 @@
 		display: flex;
 		justify-content: center;
 
-		@media screen and (max-width: 992px) {
-			align-items: center;
+		@media screen and (min-width: 992px) {
+			justify-content: flex-end;
 		}
 	}
 
@@ -902,10 +909,6 @@
 	@media screen and (min-width: 992px) {
 		display: none;
 	}
-
-	& > * {
-		align-items: flex-end;
-	}
 }
 
 .shop-icons-wrapper-desktop {
@@ -913,7 +916,7 @@
 		display: none;
 	}
 
-	width: 15%;
+	padding-left: 15%;
 }
 
 .store-desktop {
@@ -1401,13 +1404,13 @@ body.woocommerce-account {
 .mobile-menu {
 	position: fixed;
 	top: 0;
-	padding-top: 8em;
+	padding-top: 6em;
 	height: 100vh;
 	width: 100%;
 	z-index: 101;
 	background: $color__background-body;
 	transform: translateX(-200%);
-	transition: 0.4s ease-in;
+	transition: all 0.5s ease-in-out;
 	display: flex;
 	flex-flow: column;
 
@@ -1418,6 +1421,10 @@ body.woocommerce-account {
 	.show-categories-menu {
 		height: 100%;
 		overflow: scroll;
+	}
+
+	.move-back {
+		transform: translateX(-30%);
 	}
 
 	&__site-menu {
@@ -1434,17 +1441,20 @@ body.woocommerce-account {
 	&__woomenu {
 		ul {
 			padding: 0;
-			margin: 2em 0;
+			// margin: 2em 0;
+			margin: 0;
 		}
 
 		.menu-woomenu-container {
+			position: relative;
 			// transform: translateX(200%);
-			transition: all 0.3s ease-in-out;
+			transition: all 0.5s ease-in-out;
 			#menu-woomenu-1 {
 				// margin: 2em 0 6em;
 				overflow-y: scroll;
-				height: 140%;
-				transition: all 0.3s ease-in-out;
+				// height: 140%;
+				// height: 100%;
+				transition: all 0.5s ease-in-out;
 				scroll-behavior: smooth;
 				display: flex;
 				width: 100%;
@@ -1452,15 +1462,16 @@ body.woocommerce-account {
 				justify-content: flex-start;
 				align-items: flex-start;
 				overflow: hidden;
-				position: relative;
+				position: absolute;
 
 				.menu-item {
 					position: static;
-					transition: all 0.3s ease-in;
+					transition: all 0.5s ease-in-out;
 					width: 100%;
 					display: flex;
 					align-items: center;
 					border-bottom: 1px solid #efefef;
+					order: 1;
 
 					.menu-thumbnail-image {
 						display: none;
@@ -1470,10 +1481,11 @@ body.woocommerce-account {
 						@include fluid-type($min_width, $max_width, 14px, 16px);
 						display: flex;
 						justify-content: space-between;
+						border-right: 1px solid #efefef;
 					}
 
 					.sub-menu {
-						transition: all 0.3s ease-in-out;
+						transition: all 0.5s ease-in-out;
 						// max-height: 0em;
 						transform: translateX(200%);
 						position: absolute;
@@ -1483,6 +1495,8 @@ body.woocommerce-account {
 						z-index: -1;
 						opacity: 0;
 						text-align: left;
+						display: flex;
+						flex-flow: column;
 					}
 				}
 
@@ -1510,10 +1524,13 @@ body.woocommerce-account {
 
 				.sub-menu--expanded {
 					transform: translateX(0%) !important;
-					top: 0 !important;
 					height: 100% !important;
 					z-index: 1 !important;
 					opacity: 1 !important;
+				}
+
+				.sub-menu--visible {
+					top: 0 !important;
 				}
 
 				#back-button {
@@ -1732,21 +1749,18 @@ body.woocommerce-account {
 			// position: absolute;
 			// opacity: 0;
 			// z-index: -1;
-			transition: all 0.5s ease-in-out;
+			transition: all 0.3s ease-in-out;
 
 			overflow: hidden;
 			// transition:height 0.3s ease-out;
 			opacity: 0;
-			will-change: opacity;
-			display: none;
-
 			left: 50%;
 			transform: translateX(-50%);
 
 			padding: 20px;
 
 			border-radius: 2px;
-			transition: all 0.5s;
+			// transition: all 0.5s;
 
 			will-change: opacity;
 			display: none;
@@ -1915,9 +1929,13 @@ body.woocommerce-account {
 			position: relative;
 			// background: $color__background-screen;
 
+			@media screen and (max-width: 550px) {
+				margin-bottom: 2em;
+			}
+
 			@media screen and (min-width: 550px) {
 				// margin: 1em;
-				margin-right: 1em;
+				margin-right: 2em;
 
 				&:last-of-type {
 					margin-right: 0;
@@ -1938,6 +1956,14 @@ body.woocommerce-account {
 
 				transition: all 0.3s ease-in-out;
 
+				.menu-thumbnail-image__wrapper {
+					overflow: hidden;
+					width: 100%;
+					height: 100%;
+					border-radius: 5px;
+					margin-bottom: 2em;
+				}
+
 				.menu-thumbnail-image {
 					display: block;
 					// margin-right: 20px;
@@ -1949,12 +1975,25 @@ body.woocommerce-account {
 					background-size: cover;
 					background-position: center;
 					background-repeat: no-repeat;
-					margin-bottom: 2em;
-
 					transition: all 0.3s ease-in-out;
+					position: relative;
+
+					&:before {
+						background: $color_background-main-theme--dark-trans;
+						width: 100%;
+						height: 100%;
+						display: block;
+						position: absolute;
+						content: "";
+						transition: all 0.3s ease-in-out;
+					}
 
 					&:hover {
 						transform: scale(1.05);
+
+						&:before {
+							opacity: 0;
+						}
 					}
 				}
 
@@ -1986,5 +2025,14 @@ body.woocommerce-account {
 
 			// }
 		}
+	}
+}
+
+.current-menu-item {
+	// color: $color_dark_blue;
+	// border-bottom: 3px solid $color__background-main-theme;
+
+	a {
+		color: $color__background-main-theme !important;
 	}
 }

@@ -10,8 +10,14 @@ $carousel_image_1 = get_field('carousel_image_1', $post->ID);
 $carousel_image_position_1 = get_field('carousel_image_position_1', $post->ID);
 $carousel_image_1_header = get_field('carousel_image_1_header', $post->ID);
 $carousel_image_1_subheader = get_field('carousel_image_1_subheader', $post->ID);
+
+$carousel_image_2 = get_field('carousel_image_2', $post->ID);
+$carousel_image_position_2 = get_field('carousel_image_position_2', $post->ID);
 $carousel_image_2_header = get_field('carousel_image_2_header', $post->ID);
 $carousel_image_2_subheader = get_field('carousel_image_2_subheader', $post->ID);
+
+$carousel_image_3 = get_field('carousel_image_3', $post->ID);
+$carousel_image_position_3 = get_field('carousel_image_position_3', $post->ID);
 $carousel_image_3_header = get_field('carousel_image_3_header', $post->ID);
 $carousel_image_3_subheader = get_field('carousel_image_3_subheader', $post->ID);
 ?>
@@ -31,7 +37,7 @@ $carousel_image_3_subheader = get_field('carousel_image_3_subheader', $post->ID)
 			?>
         </div>
 		</div>
-		<div class="swiper-slide" style="background-image: url(<?php echo get_field('carousel_image_2', $post->ID) ?>);">
+		<div class="swiper-slide" style="background-image: url(<?php echo $carousel_image_2 ?>); background-position: <?php echo $carousel_image_position_2 ?>;">
 		<div class="parallax-title" data-swiper-parallax="-100">
 		<?php
 				echo '<h2>' .$carousel_image_2_header. '</h2>';
@@ -39,7 +45,7 @@ $carousel_image_3_subheader = get_field('carousel_image_3_subheader', $post->ID)
 			?>
 		</div>
 		</div>
-		<div class="swiper-slide" style="background-image: url(<?php echo get_field('carousel_image_3', $post->ID) ?>);">
+		<div class="swiper-slide" style="background-image: url(<?php echo $carousel_image_3 ?>); background-position: <?php echo $carousel_image_position_3 ?>;">
 		<div class="parallax-title" data-swiper-parallax="-100">
 		<?php
 				echo '<h2>' .$carousel_image_3_header. '</h2>';

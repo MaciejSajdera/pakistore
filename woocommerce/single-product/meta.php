@@ -31,28 +31,12 @@ global $product;
 
 	<?php endif; ?>
 
-	<?php echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
+	<?php echo wc_get_product_category_list( $product->get_id(), ', ', '<div class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</div>' ); ?>
 
-	<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
+	<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<div class="tagged_as"><span>' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</div>' ); ?>
 
 	
-<?php
-    $terms = get_the_terms( $post->ID, 'producent' );
 
-	if ($terms) {
-		foreach ( $terms as $term ){
-			$producent_name = $term->name;
-			$imageURL = get_field("producent_logo", $term);
-			$producent_link = get_term_link( $term );
-
-			
-			if ($imageURL) :
-			echo '<div class="producent">Producent: <a href="'.$producent_link.'"><img src="'.$imageURL.'" alt="'.$producent_name.'"></a></div>';
-			endif;
-		}
-	}
-
-?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
 

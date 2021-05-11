@@ -7,8 +7,8 @@
 	}
 
 	@media screen and (min-width: 992px) {
-		height: 35vh;
-		height: calc(var(--vh, 1vh) * 40);
+		height: 60vh;
+		height: calc(var(--vh, 1vh) * 60);
 		margin-bottom: 0em;
 	}
 
@@ -17,6 +17,15 @@
 		background-size: cover;
 		background-position: center;
 
+		&:before {
+			background: $color_background-main-theme--dark-trans;
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: absolute;
+			content: "";
+		}
+
 		@media screen and (max-width: 992px) {
 			background-position: center;
 		}
@@ -24,6 +33,7 @@
 
 	.swiper-container {
 		height: 100%;
+		border-radius: 5px;
 	}
 
 	.swiper-scrollbar {
@@ -70,7 +80,7 @@
 
 			@media screen and (min-width: 992px) {
 				margin: 0 auto 0;
-				@include fluid-type($min_width, $max_width, 28px, 36px);
+				@include fluid-type($min_width, $max_width, 56px, 64px);
 			}
 		}
 
@@ -136,6 +146,8 @@
 }
 
 .categories-carousel {
+	width: 100%;
+
 	@media screen and (max-width: 992px) {
 		margin-bottom: 7em;
 		text-align: center;

@@ -97,10 +97,6 @@
 				
 			</div>
 
-			<!-- <?php
-				get_template_part( 'template-parts/desktop-site-menu', 'page' );
-			?> -->
-
 			<div class="desktop-menu">
 
 			<?php
@@ -109,7 +105,7 @@
 			</div>
 
 			<div class="mobile-menu">
-							<div class="mobile-menu__site-menu">
+							<!-- <div class="mobile-menu__site-menu">
 								<?php
 								wp_nav_menu(
 									array(
@@ -118,7 +114,7 @@
 									)
 								);
 								?>
-							</div>
+							</div> -->
 
 							<div class="mobile-menu__woomenu">
 								<div class="shop-menu">
@@ -136,7 +132,7 @@
 										?>
 								</div>
 							</div>
-				</div>
+			</div>
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

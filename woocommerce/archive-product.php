@@ -19,6 +19,9 @@ defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
 
+?>
+<div class="content-container">
+<?php
 /**
  * Hook: woocommerce_before_main_content.
  *
@@ -30,14 +33,14 @@ do_action( 'woocommerce_before_main_content' );
 
 ?>
 
-<div class="woocommerce-archive__wrapper">
+<!-- <div class="woocommerce-archive__wrapper"> -->
 
 
 		<?php
-			get_template_part( 'template-parts/desktop-shop-menu', 'page' );
+			// get_template_part( 'template-parts/desktop-shop-menu', 'page' );
 		?>
 
-	<div class="woocommerce-archive__right-column">
+	<!-- <div class="woocommerce-archive__right-column"> -->
 
 
 	<header class="woocommerce-products-header">
@@ -242,8 +245,10 @@ do_action( 'woocommerce_before_main_content' );
 				?>
 				</div>
 			</div>
-		</div>	<!-- woocommerce-archive__right-column -->
-	</div> <!-- woocommerce-archive__wrapper -->
+		<!-- </div> -->
+			<!-- woocommerce-archive__right-column -->
+	<!-- </div>  -->
+	<!-- woocommerce-archive__wrapper -->
 
 	<?php
 	// };
@@ -251,5 +256,7 @@ do_action( 'woocommerce_before_main_content' );
 
 	?>
 
+</div>
+ <!-- content-container -->
 <?php
 get_footer( 'shop' );

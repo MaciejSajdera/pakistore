@@ -23,7 +23,7 @@ $cookie_info = get_field('cookie_info', get_option( 'page_on_front' ));
 
 				</div> -->
 			
-				<div class="site-footer__main">
+				<div class="site-footer__main content-container">
 					
 					<div class="col col-1">
 					<h3>Siedziba</h3>

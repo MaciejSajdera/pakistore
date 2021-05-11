@@ -8,4 +8,9 @@
 	&__top-content {
 		width: 100%;
 	}
+
+	h3 {
+		@include fluid-type($min_width, $max_width, 24px, 32px);
+		text-align: center;
+	}
 }

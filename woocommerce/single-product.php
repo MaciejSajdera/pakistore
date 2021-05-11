@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header( 'shop' ); ?>
 
-
+<div class="content-container">
 
 
 	<?php
@@ -70,6 +70,9 @@ get_header( 'shop' ); ?>
 		 */
 		do_action( 'woocommerce_sidebar' );
 	?>
+
+</div>
+ <!-- content-container -->
 
 <?php
 get_footer( 'shop' );

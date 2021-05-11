@@ -51,13 +51,13 @@ get_header();
 
 		<div class="content-container">
 			<?php
-				get_template_part( 'template-parts/home-brands-showcase', 'page' );
+				// get_template_part( 'template-parts/home-brands-showcase', 'page' );
 			?>
 		</div>
 
 		<div class="content-container">
 			<?php
-				get_template_part( 'template-parts/home-content-blog', 'page' );
+				// get_template_part( 'template-parts/home-content-blog', 'page' );
 			?>
 		</div>
 

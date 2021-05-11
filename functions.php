@@ -100,12 +100,12 @@ endif;
 add_action( 'after_setup_theme', 'pakistore_setup' );
 
  
-add_action( 'after_setup_theme', 'woo_addons_setup' );
-function woo_addons_setup() {
-    add_theme_support( 'wc-product-gallery-lightbox' );
-    add_theme_support( 'wc-product-gallery-slider' );
+// add_action( 'after_setup_theme', 'woo_addons_setup' );
+// function woo_addons_setup() {
+//     add_theme_support( 'wc-product-gallery-lightbox' );
+//     add_theme_support( 'wc-product-gallery-slider' );
 
-}
+// }
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -233,7 +233,7 @@ function my_wp_nav_menu_objects( $items, $args ) {
 				// append bg image
 		if( $menu_thumbnail_image ) {
 					// $item->title .= '<span>'. $item->classes . '</span>';
-			$item->title .= ' <span class="menu-thumbnail-image test" style="background-image: url('. $menu_thumbnail_image .'); background-position: '.$menu_thumbnail_image_position.'"></span>';
+			$item->title .= '<div class="menu-thumbnail-image__wrapper"><span class="menu-thumbnail-image" style="background-image: url('. $menu_thumbnail_image .'); background-position: '.$menu_thumbnail_image_position.'"></span></div>';
 		
 		}
 	}
@@ -813,7 +813,7 @@ function bbloomer_best_badge_shop_page() {
    global $product;
 //    $newness_days = 2;
 //    $created = strtotime( $product->get_date_created() );
-   if ( has_term( 23, 'product_cat' ) ) {
+   if ( has_term( 40, 'product_cat' ) ) {
 	  echo '<div class="bestseller-wrapper">';
 	  echo '<span class="bestseller"></span>';
 	  echo '<span>' . esc_html__( 'bestseller', 'woocommerce' ) . '</span>';
@@ -827,10 +827,22 @@ function bbloomer_best_badge_shop_page() {
 
 //SINGLE PRODUCT LAYOUT
 
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+
+add_action( 'my_woocommerce_before_single_product', 'woocommerce_template_single_title', 5 );
+add_action( 'my_woocommerce_before_single_product', 'woocommerce_template_single_rating', 10 );
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+add_action( 'woocommerce_after_single_product_summary', 'woocommerce_template_single_excerpt', 5 );
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 60 );
+
+
 //Price
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 25 );
-
 
 //Related products && Upsell products
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
@@ -840,8 +852,8 @@ add_action('woocommerce_after_single_product', 'woocommerce_upsell_display', 15 
 add_action('woocommerce_after_single_product', 'woocommerce_output_related_products', 20 );
 
 //Producent
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
-add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 20 );
+// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+// add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 20 );
 
 
 // remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
@@ -855,7 +867,7 @@ function filter_woocommerce_get_price_html( $price, $instance ) {
 
 	if ( is_singular() && is_product() && is_single( $product->get_id() )) {
 
-		$price .= 'Nasza cena: ';
+		$price .= '<span class="product-info__label">Nasza cena: </span>';
 	}
 
     return $price;
@@ -865,18 +877,18 @@ function filter_woocommerce_get_price_html( $price, $instance ) {
 add_filter( 'woocommerce_get_price_html', 'filter_woocommerce_get_price_html', 10, 2 ); 
 
 
-function bbloomer_echo_qty_front_add_cart() {
- echo '<div class="qty-label">Ilość: </div>'; 
-}
-add_action( 'woocommerce_before_add_to_cart_button', 'bbloomer_echo_qty_front_add_cart' );
+// function bbloomer_echo_qty_front_add_cart() {
+//  echo '<div class="quantity-label">Ilość: </div>'; 
+// }
+// add_action( 'woocommerce_before_add_to_cart_button', 'bbloomer_echo_qty_front_add_cart' );
 
 function my_display_quantity_minus() {
-   echo '<button type="button" class="minus"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13H5v-2h14v2z"/></svg></button>';
+   echo '<button type="button" class="minus"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path fill="#474596" d="M19 13H5v-2h14v2z"/></svg></button>';
 }
-add_action( 'woocommerce_before_add_to_cart_quantity', 'my_display_quantity_minus' );
+add_action( 'woocommerce_after_add_to_cart_quantity', 'my_display_quantity_minus' );
 
 function my_display_quantity_plus() {
-   echo '<button type="button" class="plus"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>';
+   echo '<button type="button" class="plus"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path fill="#474596" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></button>';
 }
 add_action( 'woocommerce_after_add_to_cart_quantity', 'my_display_quantity_plus' );
 
@@ -1099,6 +1111,10 @@ add_filter( 'woocommerce_cross_sells_columns', 'bbloomer_change_cross_sells_colu
 function bbloomer_change_cross_sells_columns( $columns ) {
 return 4;
 }
+
+//force number of products per row
+
+add_filter('loop_shop_columns',function(){return 4;});
  
 
 add_filter( 'woocommerce_dpd_disable_ssl_verification', '__return_true' ); 
@@ -1119,9 +1135,32 @@ add_filter( 'woocommerce_dpd_disable_cache_wsdl', '__return_true' );
 
 // }
 
-//force number of products per row
+/**
+ * Add a custom product data tab
+ */
+// add_filter( 'woocommerce_product_tabs', 'woo_new_product_tab' );
+// function woo_new_product_tab( $tabs ) {
+	
+// 	// Adds the new tab
+	
+// 	$tabs['test_tab'] = array(
+// 		'title' 	=> __( 'New Product Tab', 'woocommerce' ),
+// 		'priority' 	=> 50,
+// 		'callback' 	=> 'woo_new_product_tab_content'
+// 	);
 
-add_filter('loop_shop_columns',function(){return 3;});
+// 	return $tabs;
+
+// }
+
+// function woo_new_product_tab_content() {
+
+// 	// The new tab content
+
+// 	echo '<h2>New Product Tab</h2>';
+// 	echo '<p>Here\'s your new product tab.</p>';
+	
+// }
 
 function footer_copyright() {
 	global $wpdb;

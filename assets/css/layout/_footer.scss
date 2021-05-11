@@ -10,7 +10,7 @@ footer#colophon {
 		text-align: left;
 	}
 
-	background: $color__background-main-theme--dark;
+	background: $color__background-main-theme;
 
 	.page {
 		height: 100%;
@@ -65,7 +65,7 @@ footer#colophon {
 		display: flex;
 		flex-flow: column;
 		justify-content: space-between;
-		background: $color__background-main-theme--dark;
+		// background: $color__background-main-theme;
 
 		// @media screen and (min-width: 992px) {
 		// 	height: 50%;
@@ -80,10 +80,14 @@ footer#colophon {
 			}
 		}
 
+		a:hover {
+			color: inherit !important;
+		}
+
 		@media screen and (min-width: 992px) {
 			display: flex;
 			justify-content: space-between;
-			width: 80%;
+			width: 100%;
 			margin: 2em auto;
 
 			.col {
