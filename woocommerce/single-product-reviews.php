@@ -86,7 +86,7 @@ if ( ! comments_open() ) {
 				$name_email_required = (bool) get_option( 'require_name_email', 1 );
 				$fields              = array(
 					'author' => array(
-						'label'    => __( 'Name', 'woocommerce' ),
+						'label'    => __( 'Autor', 'woocommerce' ),
 						'type'     => 'text',
 						'value'    => $commenter['comment_author'],
 						'required' => $name_email_required,

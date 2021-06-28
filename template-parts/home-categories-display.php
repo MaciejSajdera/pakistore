@@ -1,8 +1,8 @@
 
 <section class="categories-carousel">
 
-<h3>POPULARNE</h3>
+        <h3 class="home-main__subheader">POPULARNE</h3>
 
-<?= get_field('product_showcase_shortcode_1') ?>
+    <?= get_field('product_showcase_shortcode_1') ?>
 
 </section>

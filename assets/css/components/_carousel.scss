@@ -43,10 +43,12 @@
 	.swiper-button-prev,
 	.swiper-button-next {
 		color: rgba(255, 255, 255, 0.699) !important;
-		padding: 2em;
+		padding: 1em;
+		opacity: 0.7;
 
 		&:after {
 			font-size: 1.75rem;
+			display: none;
 		}
 
 		@media screen and (max-width: 992px) {
@@ -57,6 +59,20 @@
 				font-size: 1.25rem;
 			}
 		}
+	}
+
+	.swiper-button-prev {
+		background: url(../dist/svg/previous.svg) no-repeat;
+		background-size: contain;
+		background-position: center;
+		left: 2em;
+	}
+
+	.swiper-button-next {
+		background: url(../dist/svg/next.svg) no-repeat;
+		background-size: contain;
+		background-position: center;
+		right: 2em;
 	}
 
 	.swiper-pagination-bullet {

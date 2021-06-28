@@ -29,38 +29,48 @@ get_header();
 				<?php
 			endif;
 			
-			?> <div class="blog-grid"> <?php
-			/* Start the Loop */
-			while ( have_posts() ) :
+			?> 
+			
+			<div class="content-container">
 
-				the_post();
+				<div class="blog-grid"> <?php
+				/* Start the Loop */
+				while ( have_posts() ) :
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
+					the_post();
 
-				echo "<div class='post-wrapper'>";
+					/*
+					* Include the Post-Type-specific template for the content.
+					* If you want to override this in a child theme, then include a file
+					* called content-___.php (where ___ is the Post Type name) and that will be used instead.
+					*/
 
-					echo "<div class='post-upper-wrapper'>";
-							echo '<a class="blog-post" href="'. get_permalink() .'" style="background-image: url(' .get_the_post_thumbnail_url(). ')">';
+					echo "<div class='post-wrapper'>";
 
-							echo '<div class="blog-post-caption">';
-							echo '<h3 class="uppercase">' . get_the_title() . '</h3>';
-							echo '</div>';
-							echo '</a>';
+						echo "<div class='post-wrapper__upper'>";
+								echo '<a class="blog-post" href="'. get_permalink() .'" style="background-image: url(' .get_the_post_thumbnail_url(). ')">';
+
+								echo '<div class="blog-post-caption">';
+								echo '<h3 class="uppercase">' . get_the_title() . '</h3>';
+								echo '</div>';
+								echo '</a>';
+
+						echo "</div>";
+
+					the_excerpt();
+					// get_excerpt(130, 'content');
 
 					echo "</div>";
 
-				the_excerpt();
+				endwhile;
 
-				echo "</div>";
-
-			endwhile;
-
-			?>		</div><!-- blog-grid --> <?php
-
+				?>
+				
+				</div><!-- blog-grid -->
+			<div><!-- content-container -->
+				
+			<?php
+		
 			the_posts_navigation();
 
 		else :

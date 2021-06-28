@@ -93,7 +93,7 @@ if (mix.inProduction()) {
 mix
 	.js(`${devPath}/js/main.js`, "js")
 	.js(`${devPath}/js/carousel.js`, "js")
-	.js(`${devPath}/js/single-product-add-to-cart.js`, "js")
+	.js(`${devPath}/js/single-product.js`, "js")
 	.js(`${devPath}/js/cart-update-auto.js`, "js")
 	.js(`${devPath}/js/product-filters.js`, "js")
 	.js(`${devPath}/js/maps.js`, "js")

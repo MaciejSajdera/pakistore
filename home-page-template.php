@@ -57,13 +57,7 @@ get_header();
 
 		<div class="content-container">
 			<?php
-				// get_template_part( 'template-parts/home-content-blog', 'page' );
-			?>
-		</div>
-
-		<div class="content-container">
-			<?php
-				get_template_part( 'template-parts/home-advantages', 'page' );
+				get_template_part( 'template-parts/home-content-blog', 'page' );
 			?>
 		</div>
 

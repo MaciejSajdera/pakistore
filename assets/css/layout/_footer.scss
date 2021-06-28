@@ -3,7 +3,7 @@ footer#colophon {
 	width: 100%;
 	// margin: 2em auto;
 	color: white;
-	margin-top: 5em;
+	// margin-top: 5em;
 	text-align: center;
 
 	@media screen and (min-width: 992px) {
@@ -75,6 +75,8 @@ footer#colophon {
 
 	.site-footer__main {
 		@media screen and (max-width: 992px) {
+			padding-top: 3em;
+
 			.col {
 				margin-bottom: 4em;
 			}
@@ -90,9 +92,9 @@ footer#colophon {
 			width: 100%;
 			margin: 2em auto;
 
-			.col {
-				margin-right: 2em;
-			}
+			// .col {
+			// 	margin-right: 2em;
+			// }
 		}
 	}
 
@@ -153,11 +155,24 @@ footer#colophon {
 		&:before {
 			content: "";
 			height: 1px;
-			width: 80%;
+
 			background-color: white;
 			position: absolute;
 			top: -0.5em;
 			text-align: center;
+			width: 90%;
+
+			@media screen and (min-width: 992px) {
+				width: 90%;
+			}
+
+			@media screen and (min-width: 1200px) {
+				width: 80%;
+			}
+
+			@media screen and (min-width: 1600px) {
+				width: 70%;
+			}
 		}
 	}
 }

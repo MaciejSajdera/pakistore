@@ -386,7 +386,13 @@ window.addEventListener("DOMContentLoaded", event => {
 			// if (e.target.classList.contains(".menu-item")) {
 			// const expandSubMenuTrigger = e.target;
 			// expandSubMenuTrigger.classList.add("expand-menu-toggle__toggled");
+
 			const submenu = this.querySelector(".sub-menu");
+
+			if (!submenu) {
+				return;
+			}
+
 			// submenu.classList.toggle("sub-menu--expanded");
 			// const submenuExpanded = this.closest(".sub-menu--expanded");
 			// submenuExpanded.classList.remove("sub-menu--expanded");
@@ -445,6 +451,11 @@ window.addEventListener("DOMContentLoaded", event => {
 			// const expandSubMenuTrigger = e.target;
 			// expandSubMenuTrigger.classList.add("expand-menu-toggle__toggled");
 			const submenu = this.querySelector(".sub-menu");
+
+			if (!submenu) {
+				return;
+			}
+
 			// submenu.classList.toggle("sub-menu--expanded");
 			// const submenuExpanded = this.closest(".sub-menu--expanded");
 			// submenuExpanded.classList.remove("sub-menu--expanded");

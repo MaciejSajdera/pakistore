@@ -23,14 +23,17 @@
 			<div class="entry-meta">
 				<?php
 				pakistore_posted_on();
-				pakistore_posted_by();
+				// pakistore_posted_by();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 	
 
-	<div class="entry-content wrapper-flex-row blog-post-container">
+	<div class="entry-content blog-post-container">
+
+
+	<?php pakistore_post_thumbnail(); ?>
 
 	<div class="post-content">
 		<?php
@@ -56,8 +59,9 @@
 			)
 		);
 		?>
-		</div>
-		<?php pakistore_post_thumbnail(); ?>
+		
+	</div>
+
 	</div><!-- .entry-content -->
 
 	<div class="post-navigation">

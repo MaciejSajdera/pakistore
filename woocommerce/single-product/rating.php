@@ -31,26 +31,49 @@ $average      = $product->get_average_rating();
 
 if ( $rating_count === 0 ) : ?>
 
-	<div class="woocommerce-product-rating">
-	<a class="star-link" href="#" rel="nofollow"><div class="star-rating empty-star-rating" role="img" aria-label="Brak opinii"></div></span></a>
-		<?php if ( comments_open() ) : ?>
-			<?php //phpcs:disable ?>
-			<a class="star-link star-text" href="#" class="woocommerce-review-link" rel="nofollow">(Dodaj opinię)</a>
-			<?php // phpcs:enable ?>
-		<?php endif ?>
+
+	<div class="product-info">
+		<div class="product-info__label">
+			Ocena kupujących:
+		</div>
+
+		<div class="product-info__value">
+			<div class="woocommerce-product-rating">
+				<a class="star-link" href="#" rel="nofollow"><div class="star-rating empty-star-rating" role="img" aria-label="Brak opinii"></div></span></a>
+				<?php if ( comments_open() ) : ?>
+					<?php //phpcs:disable ?>
+					<a class="star-link star-text" href="#" class="woocommerce-review-link" rel="nofollow">(Dodaj opinię)</a>
+					<?php // phpcs:enable ?>
+				<?php endif ?>
+			</div>
+		</div>
+		
 	</div>
+
+
 
 <?php endif;
 
 if ( $rating_count > 0 ) : ?>
 
-	<div class="woocommerce-product-rating">
-		<?php echo wc_get_rating_html( $average, $rating_count ); // WPCS: XSS ok. ?>
-		<?php if ( comments_open() ) : ?>
-			<?php //phpcs:disable ?>
-			<a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<?php printf( _n( '%s customer review', '%s customer reviews', $review_count, 'woocommerce' ), '<span class="count">' . esc_html( $review_count ) . '</span>' ); ?>)</a>
-			<?php // phpcs:enable ?>
-		<?php endif ?>
+	<div class="product-info">
+	
+			<div class="product-info__label">
+				Ocena kupujących:
+			</div>
+
+			<div class="product-info__value">
+
+				<div class="woocommerce-product-rating">
+					<?php echo wc_get_rating_html( $average, $rating_count ); // WPCS: XSS ok. ?>
+					<?php if ( comments_open() ) : ?>
+						<?php //phpcs:disable ?>
+						<a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<?php printf( _n( '%s customer review', '%s customer reviews', $review_count, 'woocommerce' ), '<span class="count">' . esc_html( $review_count ) . '</span>' ); ?>)</a>
+						<?php // phpcs:enable ?>
+					<?php endif ?>
+				</div>
+
+			</div>
 	</div>
 
 <?php endif; ?>

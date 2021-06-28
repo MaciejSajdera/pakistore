@@ -64,6 +64,9 @@ if ( post_password_required() ) {
 
 
 			<div class="summary entry-summary">
+
+				<div class="product-summary__wrapper">
+
 				<?php
 
 				/** Product Info Table */
@@ -92,7 +95,12 @@ if ( post_password_required() ) {
 						$availbility_status = '<span class="product-notavailable">Niedostępne</span>';
 					}
 
+					$age = get_field("age");
+
 					echo '<div class="product-info"><div class="product-info__label">Dostępność:</div><div class="product-info__value">'.$availbility_status.'</div></div>';
+
+
+					echo '<div class="product-info"><div class="product-info__label">Wiek dziecka:</div><div class="product-info__value">'.$age.'</div></div>';
 
 				/**
 				 * Hook: woocommerce_single_product_summary.
@@ -111,7 +119,7 @@ if ( post_password_required() ) {
 
 	
 			?>
-
+				</div>
 			</div>
 
 			<?php

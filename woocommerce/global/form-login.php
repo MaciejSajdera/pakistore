@@ -32,11 +32,11 @@ if ( is_user_logged_in() ) {
 
 	<p class="form-row form-row-first">
 		<!-- <label for="username"><?php esc_html_e( 'Username or email', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label> -->
-		<input type="text" class="input-text" name="username" id="username" autocomplete="username" placeholder="Nazwa użytkownika lub adres email"/>
+		<input type="text" class="input-text" name="username" id="username" autocomplete="username" placeholder="<?php esc_html_e( 'Username or email', 'woocommerce' ); ?>"/>
 	</p>
 	<p class="form-row form-row-last">
-		<label for="password"><?php esc_html_e( 'Password', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
-		<input class="input-text" type="password" name="password" id="password" autocomplete="current-password" />
+		<!-- <label for="password"><?php esc_html_e( 'Password', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label> -->
+		<input class="input-text" type="password" name="password" id="password" autocomplete="current-password" placeholder="<?php esc_html_e( 'Password', 'woocommerce' ); ?>"/>
 	</p>
 	<div class="clear"></div>
 
@@ -48,7 +48,7 @@ if ( is_user_logged_in() ) {
 		</label>
 		<?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
 		<input type="hidden" name="redirect" value="<?php echo esc_url( $redirect ); ?>" />
-		<button type="submit" class="woocommerce-button button woocommerce-form-login__submit outline-button" name="login" value="<?php esc_attr_e( 'Login', 'woocommerce' ); ?>"><?php esc_html_e( 'Login', 'woocommerce' ); ?></button>
+		<button type="submit" class="woocommerce-button button woocommerce-form-login__submit my-submit-button" name="login" value="<?php esc_attr_e( 'Login', 'woocommerce' ); ?>"><?php esc_html_e( 'Login', 'woocommerce' ); ?></button>
 	</p>
 	<p class="lost_password">
 		<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Lost your password?', 'woocommerce' ); ?></a>

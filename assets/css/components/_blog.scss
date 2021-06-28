@@ -1,4 +1,5 @@
 .blog-grid {
+	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	column-gap: 3em;
@@ -33,10 +34,16 @@ body.blog {
 		justify-content: space-between;
 		opacity: 0;
 		transition: all 0.4s ease-in;
+
+		// &__upper {
+		// 	margin-bottom: 2rem;
+		// }
+
 		p {
 			height: 100%;
-			@include fluid-type($min_width, $max_width, 16px, 18px);
+			@include fluid-type($min_width, $max_width, 14px, 16px);
 			padding: 1em;
+			font-family: $font_regular;
 		}
 
 		a.read-more {
@@ -53,6 +60,7 @@ body.blog {
 	background-size: cover;
 	display: flex;
 	min-height: 20em;
+	border-radius: 3px;
 
 	@media screen and (min-width: 992px) {
 		min-height: 32em;
@@ -96,46 +104,53 @@ body.blog {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(1, 34, 65, 0);
-	background-image: -webkit-linear-gradient(
-		bottom,
-		#012241,
-		#012241 1%,
-		rgba(1, 34, 65, 0.59)
-	);
-	background-image: -moz-linear-gradient(
-		bottom,
-		#012241,
-		#012241 1%,
-		rgba(1, 34, 65, 0.59)
-	);
-	background-image: -o-linear-gradient(
-		bottom,
-		#012241,
-		#012241 1%,
-		rgba(1, 34, 65, 0.59)
-	);
-	background-image: -ms-linear-gradient(
-		bottom,
-		#012241,
-		#012241 1%,
-		rgba(1, 34, 65, 0.59)
-	);
-	background-image: linear-gradient(
-		to top,
-		#012241,
-		#012241 1%,
-		rgba(1, 34, 65, 0.59)
-	);
-	opacity: 0.75;
+	background-color: $color_background-main-theme--dark-trans;
+	border-radius: 3px;
+	// background-image: -webkit-linear-gradient(
+	// 	bottom,
+	// 	#012241,
+	// 	#012241 1%,
+	// 	$color_background-main-theme--dark-trans
+	// );
+	// background-image: -moz-linear-gradient(
+	// 	bottom,
+	// 	#012241,
+	// 	#012241 1%,
+	// 	$color_background-main-theme--dark-trans
+	// );
+	// background-image: -o-linear-gradient(
+	// 	bottom,
+	// 	#012241,
+	// 	#012241 1%,
+	// 	$color_background-main-theme--dark-trans
+	// );
+	// background-image: -ms-linear-gradient(
+	// 	bottom,
+	// 	#012241,
+	// 	#012241 1%,
+	// 	$color_background-main-theme--dark-trans
+	// );
+	// background-image: linear-gradient(
+	// 	to top,
+	// 	#012241,
+	// 	#012241 1%,
+	// 	$color_background-main-theme--dark-trans
+	// );
+	// opacity: 0.75;
 	transition: all 0.4s ease-in-out;
 }
 
 .single-post {
 	.entry-content {
 		p {
-			@include fluid-type($min_width, $max_width, 18px, 20px);
+			font-family: $font_regular;
+			line-height: 1.75;
+			@include fluid-type($min_width, $max_width, 16px, 18px);
 		}
+	}
+
+	article {
+		width: 100%;
 	}
 
 	.entry-footer {
@@ -154,6 +169,7 @@ body.blog {
 	.post-thumbnail {
 		width: 60%;
 		padding-top: 0;
+		float: right;
 		display: flex;
 		flex-flow: column;
 		justify-content: center;
@@ -166,7 +182,7 @@ body.blog {
 		}
 
 		@media screen and (min-width: 1200px) {
-			padding: 0 3em;
+			padding: 3em 0 3em 3em;
 			align-items: flex-start;
 		}
 
@@ -179,10 +195,19 @@ body.blog {
 		width: 100%;
 		text-align: left;
 
-		@include fluid-type($min_width, $max_width, 20px, 22px);
+		// @include fluid-type($min_width, $max_width, 20px, 22px);
 
 		@media screen and (max-width: 1200px) {
 			order: 2;
+		}
+
+		p:first-letter {
+			font-size: 5em;
+			color: $color__background-main-theme;
+			font-weight: 300;
+			float: left;
+			line-height: 0.65;
+			margin: 0.1em 0.1em 0.1em 0;
 		}
 
 		.itemIntroText {
@@ -195,8 +220,8 @@ body.blog {
 }
 
 .post-navigation {
-	width: 80%;
-	margin: 5em auto 0;
+	width: 40%;
+	margin: auto;
 	display: flex;
 	flex-flow: row;
 	align-items: flex-start;
@@ -211,20 +236,40 @@ body.blog {
 		display: flex;
 		flex-flow: column;
 		justify-content: center;
+		width: 45%;
 
-		width: 14em;
-
-		@media screen and (min-width: 992px) {
-			align-items: center;
-		}
+		// @media screen and (min-width: 992px) {
+		// 	align-items: center;
+		// }
 
 		p {
-			@include fluid-type($min_width, $max_width, 16px, 18x);
+			@include fluid-type($min_width, $max_width, 13px, 16px);
 		}
 
 		&:nth-of-type(2) {
 			p {
 				text-align: right;
+			}
+
+			a {
+				align-self: flex-end;
+			}
+		}
+
+		a {
+			// width: 80%;
+			// max-width: 300px;
+
+			@media screen and (max-width: 380px) {
+				width: 125px;
+			}
+
+			@media screen and (min-width: 380px) {
+				width: 150px;
+			}
+
+			@media screen and (min-width: 992px) {
+				width: 300px;
 			}
 		}
 	}
@@ -239,11 +284,11 @@ body.blog {
 	&__next {
 		color: $color__border-input;
 
-		@include fluid-type($min_width, $max_width, 16px, 18x);
+		@include fluid-type($min_width, $max_width, 12px, 14px);
 
 		&:before,
 		:after {
-			@include fluid-type($min_width, $max_width, 16px, 18px);
+			@include fluid-type($min_width, $max_width, 12px, 14px);
 		}
 	}
 

@@ -13,4 +13,10 @@
 		@include fluid-type($min_width, $max_width, 24px, 32px);
 		text-align: center;
 	}
+
+	&__subheader {
+		border-bottom: 2px solid $color__background-main-theme--dark;
+		width: fit-content;
+		margin: 3rem auto;
+	}
 }

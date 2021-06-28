@@ -58,16 +58,15 @@ a {
 		color: $color__link-visited;
 	}
 
-	&:hover,
-	&:focus,
-	&:active {
+	&:hover {
 		color: $color__background-main-theme !important;
 		outline: 0 !important;
 		transition: all 0.3s ease-in-out;
 	}
 
 	&:focus {
-		outline: thin dotted;
+		// outline: thin dotted;
+		outline: none;
 	}
 }
 
@@ -160,6 +159,10 @@ table {
 .site {
 	opacity: 0;
 	transition: all 0.3s ease-in;
+	// background: url(../dist/img/BGDEMO.jpg) no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
 }
 
 .page-loaded {
@@ -440,6 +443,10 @@ div.woof_info_popup {
 	.required {
 		color: $color_white_text !important;
 	}
+
+	&__submit {
+		margin: inherit !important;
+	}
 }
 
 .scrollToTopBtn {
@@ -458,7 +465,7 @@ div.woof_info_popup {
 	transition: all 0.5s ease;
 
 	&__svg-wrapper {
-		background-color: $color__background-main-theme;
+		background-color: $color__background-main-theme--dark;
 		border: none;
 		border-radius: 50%;
 		color: white;
@@ -470,6 +477,8 @@ div.woof_info_popup {
 		padding: 0;
 		display: flex;
 		justify-content: center;
+
+		box-shadow: $box-shadow_standard;
 
 		// &:after {
 		// 	content: "";
@@ -541,4 +550,45 @@ div.woof_info_popup {
 .slick-prev,
 .slick-next {
 	z-index: 1 !important;
+}
+
+.return-to-shop {
+	text-align: center;
+}
+
+.pop-up {
+	position: absolute;
+	z-index: 9999;
+	// width: 100%;
+	height: auto;
+
+	padding: 0 1em;
+	left: 22.5%;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+	transform: translate(-50%, 100%);
+	bottom: -1em;
+	background: white;
+	box-shadow: 0 50px 100px rgb(50 50 93 / 10%), 0 15px 35px rgb(50 50 93 / 15%),
+		0 5px 15px rgb(0 0 0 / 10%);
+
+	@media screen and (min-width: 992px) {
+		min-width: 250px;
+		min-height: 50px;
+	}
+
+	&__arrow {
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		display: block;
+		background: white;
+		left: 50%;
+		transform: translate(-50%, -50%) rotate(45deg);
+	}
+
+	p {
+		margin: 1em 0;
+		text-align: center;
+	}
 }

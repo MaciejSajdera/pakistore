@@ -104,7 +104,7 @@ defined( 'ABSPATH' ) || exit;
 	</table>
 
 	<div class="wrapper-flex-row-around">
-		<a class="button wc-backward my-blue-outline-button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>"> <?php _e( 'Return to shop', 'woocommerce' ) ?> </a>
+		<a class="button wc-backward" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>"> <?php _e( 'Return to shop', 'woocommerce' ) ?> </a>
 
 		<div class="wc-proceed-to-checkout">
 		<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>

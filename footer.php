@@ -16,6 +16,13 @@ $cookie_info = get_field('cookie_info', get_option( 'page_on_front' ));
 	<footer id="colophon" class="site-footer">
 
 		<div class="page">
+
+			<div class="content-container advantages-content-container">
+				<?php
+					get_template_part( 'template-parts/home-advantages', 'page' );
+				?>
+			</div>
+
 			<div class="site-info">
 
 				<!-- <div class="fixed-icons">
@@ -66,7 +73,7 @@ $cookie_info = get_field('cookie_info', get_option( 'page_on_front' ));
 				</div> -->
 
 				<div class="footer-bottom">
-				<?php echo footer_copyright(); ?> Copyright © 
+				<?php echo footer_copyright(); ?> Copyright © <?php echo get_bloginfo( 'name' ); ?>
 				</div>
 				<div class="icons-info">
 					Icons made by:

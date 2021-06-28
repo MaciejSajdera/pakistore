@@ -17,7 +17,7 @@
 		<div class="entry-meta">
 			<?php
 			pakistore_posted_on();
-			pakistore_posted_by();
+			// pakistore_posted_by();
 			?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>

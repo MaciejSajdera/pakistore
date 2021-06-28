@@ -57,6 +57,13 @@ do_action( 'woocommerce_before_main_content' );
 		 */
 		do_action( 'woocommerce_archive_description' );
 		?>
+
+		<div class="woocommerce-results-and-ordering">
+		
+		<?php do_action( 'woocommerce_results_and_ordering' ); ?>
+		
+		</div>
+
 	</header>
 
 	<?php
@@ -240,7 +247,7 @@ do_action( 'woocommerce_before_main_content' );
 				 *
 				 * @hooked woocommerce_get_sidebar - 10
 				 */
-				// do_action( 'woocommerce_sidebar' );
+				do_action( 'woocommerce_sidebar' );
 
 				?>
 				</div>

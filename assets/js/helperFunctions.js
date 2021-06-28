@@ -86,5 +86,50 @@ export const addClassToAllTargetsAbove = (
 	}
 };
 
-// export { isElementInViewport, addSelfDestructingEventListener };
+export const removeEmptyParagraphs = container => {
+	container.querySelectorAll("P").forEach(p => {
+		p.innerHTML === "&nbsp;" ? p.remove() : "";
+	});
+};
+
+export class isElementAtTopOfViewport {
+	constructor(element, doAction, undoAction) {
+		this.element = element;
+		this.doAction = doAction;
+		this.undoAction = undoAction;
+
+		if ("IntersectionObserver" in window) {
+			// IntersectionObserver Supported
+			let config = {
+				root: null,
+				rootMargin: "0px",
+				threshold: 0
+			};
+
+			let observer = new IntersectionObserver(onChange, config);
+
+			observer.observe(element);
+
+			function onChange(changes, observer) {
+				changes.forEach(change => {
+					console.log(change);
+
+					if (
+						change.boundingClientRect.top < 0 &&
+						change.intersectionRect.top === 0
+					) {
+						doAction();
+					}
+					// if (change.intersectionRect.top > 0) {
+					// 	undoAction();
+					// }
+				});
+			}
+		} else {
+			// IntersectionObserver NOT Supported
+			return;
+		}
+	}
+}
+
 export default isElementInViewport;
