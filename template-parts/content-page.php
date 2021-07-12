@@ -11,11 +11,9 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<div class="content-container">
-		<header class="entry-header common-template">
-			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-		</header><!-- .entry-header -->
-	</div>
+	<header class="entry-header common-template">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+	</header><!-- .entry-header -->
 
 	<?php pakistore_post_thumbnail(); ?>
 

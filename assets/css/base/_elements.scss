@@ -22,6 +22,21 @@ body {
 // 	height: 100%;
 // }
 
+.error-404 {
+	display: flex;
+	min-height: 50vh;
+	padding: 4rem 2rem;
+
+	.page-header {
+		margin: auto;
+		text-align: center;
+
+		h1 {
+			margin-bottom: 2em;
+		}
+	}
+}
+
 blockquote,
 q {
 	quotes: "" "";
@@ -128,6 +143,22 @@ table {
 		background-size: contain;
 		animation: mymove 1.5s infinite;
 		background-position: center;
+
+		a {
+			width: 100%;
+		}
+
+		img {
+			height: auto;
+			max-width: 100%;
+			width: 200px;
+			margin: auto;
+			display: block;
+
+			@media screen and (min-width: 992px) {
+				width: 300px;
+			}
+		}
 	}
 }
 
@@ -159,10 +190,14 @@ table {
 .site {
 	opacity: 0;
 	transition: all 0.3s ease-in;
-	// background: url(../dist/img/BGDEMO.jpg) no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-	background-position: center;
+	@media screen and (min-width: 992px) {
+		background: url(../dist/img/20640296-masked3.png);
+		background-position: top right;
+	}
+
+	// background-attachment: fixed;
+	// background-size: cover;
+	// background-position: center;
 }
 
 .page-loaded {
@@ -211,6 +246,8 @@ input[type="checkbox"] {
 	display: flex;
 	justify-content: space-around;
 	margin: 3em auto 6em auto;
+	padding-top: 1em;
+
 	@media screen and (max-width: 992px) {
 		margin: 3em auto 2em auto;
 	}
@@ -550,6 +587,7 @@ div.woof_info_popup {
 .slick-prev,
 .slick-next {
 	z-index: 1 !important;
+	display: none;
 }
 
 .return-to-shop {

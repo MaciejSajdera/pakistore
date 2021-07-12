@@ -10,130 +10,44 @@ get_header();
 ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+		<main id="main" class="site-main content-container">
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+			<!-- <div class="content-container"> -->
 
-			get_template_part( 'template-parts/content', 'page' );
+				<?php
+					while ( have_posts() ) :
+						the_post();
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			// if ( comments_open() || get_comments_number() ) :
-			// 	comments_template();
-			// endif;
+						get_template_part( 'template-parts/content', 'page' );
 
-		endwhile; // End of the loop.
-		?>
+						// If comments are open or we have at least one comment, load up the comment template.
+						// if ( comments_open() || get_comments_number() ) :
+						// 	comments_template();
+						// endif;
 
-			<div class="wrapper-flex-column contact-data">
-			
-			<h2><?php echo get_field('hq_header');?></h2>
-			<h3><?php echo get_field('company_full_name');?></h3>
-			<p>Adres:</p>
-			<p><?php echo get_field('address_1');?></p>
-			<p><?php echo get_field('address_2');?></p>
-			<a href="mailto: <?php echo get_field('email');?>"><?php echo get_field('email');?></a>
-			<a href="tel:<?php echo get_field('phone_number');?>"><?php echo get_field('phone_number');?></a>
-			</div>
-			<?php echo get_field('location');?>
+					endwhile; // End of the loop.
+					?>
 
-			<div class="salesmen-wrapper wrapper-flex-column">
-
-			<?php
-			$salesmen = get_field('salesmen');
-			?>
-				<h2>Obsługa klienta</h2>
-
-				<div class="wrapper-flex-row">
-					<div class="salesman-single">
-						<div class="salesman-single__avatar" style="background-image: url(<?php echo $salesmen ['avatar_1'] ?>);"></div>
-						<h3><?php echo $salesmen ['name_1']; ?></h3>
-						<a href="tel:<?php echo $salesmen ['phone_1']; ?>">kom: <?php echo $salesmen ['phone_1']; ?></a>
-						<a href="mailto:<?php echo $salesmen ['email_1']; ?>">e-mail: <?php echo $salesmen ['email_1']; ?></a>
+					<div class="wrapper-flex-column contact-data">
+					
+						<h2><?php echo get_field('hq_header');?></h2>
+						<h3><?php echo get_field('company_full_name');?></h3>
+						<p><?php echo get_field('address_1');?></p>
+						<p><?php echo get_field('address_2');?></p>
+						<a href="mailto: <?php echo get_field('email');?>"><?php echo get_field('email');?></a>
+						<a href="tel:<?php echo get_field('phone_number');?>"><?php echo get_field('phone_number');?></a>
+						
 					</div>
 
-					<div class="salesman-single">
-						<div class="salesman-single__avatar" style="background-image: url(<?php echo $salesmen ['avatar_2'] ?>);"></div>
-						<h3><?php echo $salesmen ['name_2']; ?></h3>
-						<a href="tel:<?php echo $salesmen ['phone_2']; ?>">kom: <?php echo $salesmen ['phone_2']; ?></a>
-						<a href="mailto:<?php echo $salesmen ['email_2']; ?>">e-mail: <?php echo $salesmen ['email_2']; ?></a>
+					<!-- <div id="map_wrapper">
+						<div id="map_canvas" class="map"></div>
+					</div> -->
 
-					</div>
+					<?php
+						get_template_part( 'template-parts/contact-form', 'page' );
+					?>
 
-					<div class="salesman-single">
-						<div class="salesman-single__avatar" style="background-image: url(<?php echo $salesmen ['avatar_3'] ?>);"></div>
-						<h3><?php echo $salesmen ['name_3']; ?></h3>
-						<a href="tel:<?php echo $salesmen ['phone_3']; ?>">kom: <?php echo $salesmen ['phone_3']; ?></a>
-						<a href="mailto:<?php echo $salesmen ['email_3']; ?>">e-mail: <?php echo $salesmen ['email_3']; ?></a>
-					</div>
-				
-				</div>
-
-			</div>
-
-
-			<div class="our-shops wrapper-flex-column">
-
-			<?php
-			$shops = get_field('shops');
-			$opening_hours_1 = $shops['opening_hours_1'];
-			$opening_hours_2 = $shops['opening_hours_2'];
-			?>
-
-				<h2>Nasze Sklepy</h2>
-
-				<div class="wrapper-flex-row">
-					<div class="shop-single">
-
-						<h3><?php echo $shops ['name_1']; ?></h3>
-						<a href="tel:<?php echo $shops ['phone_1']; ?>">kom: <?php echo $shops ['phone_1']; ?></a>
-						<a href="mailto:<?php echo $shops ['email_1']; ?>">e-mail: <?php echo $shops ['email_1']; ?></a>
-						<span class="opening-hours__title">Godziny otwarcia</span>
-						<div class="opening-hours">
-							<p> <span><?php echo $opening_hours_1['weekdays'] ?></span> <span><?php echo $opening_hours_1['weekdays_hours'] ?></span> </p>
-							<p> <span><?php echo $opening_hours_1['saturday'] ?></span> <span><?php echo $opening_hours_1['saturday_hours'] ?></span> </p>
-							<p> <span><?php echo $opening_hours_1['sunday'] ?></span> <span><?php echo $opening_hours_1['sunday_hours'] ?></span> </p>
-						</div>
-					</div>
-
-					<div class="shop-single">
-						<h3><?php echo $shops ['name_2']; ?></h3>
-						<a href="tel:<?php echo $shops ['phone_2']; ?>">kom: <?php echo $shops ['phone_2']; ?></a>
-						<a href="mailto:<?php echo $shops ['email_2']; ?>">e-mail: <?php echo $shops ['email_2']; ?></a>
-						<span class="opening-hours__title">Godziny otwarcia</span>
-						<div class="opening-hours">
-							<p> <span><?php echo $opening_hours_2['weekdays'] ?></span> <span><?php echo $opening_hours_2['weekdays_hours'] ?></span> </p>
-							<p> <span><?php echo $opening_hours_2['saturday'] ?></span> <span><?php echo $opening_hours_2['saturday_hours'] ?></span> </p>
-							<p> <span><?php echo $opening_hours_2['sunday'] ?></span> <span><?php echo $opening_hours_2['sunday_hours'] ?></span> </p>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="wrapper-flex-row">
-					<div class="shop-single">
-						<h3><?php echo $shops ['name_3']; ?></h3>
-						<a href="tel:<?php echo $shops ['phone_3']; ?>">kom: <?php echo $shops ['phone_3']; ?></a>
-					</div>
-
-					<div class="shop-single">
-						<h3><?php echo $shops ['name_4']; ?></h3>
-						<a href="tel:<?php echo $shops ['phone_4']; ?>">kom: <?php echo $shops ['phone_4']; ?></a>
-						<a href="mailto:<?php echo $shops ['email_4']; ?>">e-mail: <?php echo $shops ['email_4']; ?></a>
-					</div>
-				</div>
-
-			
-			</div>
-
-			<div id="map_wrapper">
-    			<div id="map_canvas" class="mapping"></div>
-			</div>
-
-			<?php
-			get_template_part( 'template-parts/contact-form', 'page' );
-		?>
+			<!-- </div> -->
 
 		</main><!-- #main -->
 	</div><!-- #primary -->

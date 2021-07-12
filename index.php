@@ -57,8 +57,10 @@ get_header();
 
 						echo "</div>";
 
-					the_excerpt();
-					// get_excerpt(130, 'content');
+					// the_excerpt();
+					echo '<p>'. get_excerpt(250, 'content'). '</p>';
+
+					 echo '<a class="read-more" href="'. get_permalink() .'">Czytaj dalej</a>';
 
 					echo "</div>";
 

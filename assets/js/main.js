@@ -7,7 +7,8 @@ import smoothscroll from "smoothscroll-polyfill";
 import {
 	isElementInViewport,
 	addSelfDestructingEventListener,
-	addClassToAllTargetsAbove
+	addClassToAllTargetsAbove,
+	removeEmptyParagraphs
 } from "../js/helperFunctions";
 
 window.addEventListener("load", () => {
@@ -151,7 +152,9 @@ window.addEventListener("DOMContentLoaded", event => {
 		});
 	};
 
-	hideEmptyFilters();
+	//"Woof filter" plugin renders HTML elements on the client side so setTimeout is set to get them.
+
+	setTimeout(() => hideEmptyFilters(), 10);
 
 	const handleSelectProductsPerPage = () => {
 		const selectProductsPerPage = document.querySelector("#products-per-page");
@@ -931,20 +934,16 @@ window.addEventListener("DOMContentLoaded", event => {
 		}
 	});
 
-	// const wooGalleryThumbnails = document.querySelectorAll(
-	// 	".woocommerce-product-gallery--with-images .flex-control-thumbs li"
-	// );
+	const homeAbout = document.querySelector(".home-about");
 
-	// if (wooGalleryThumbnails) {
-	// 	console.log(wooGalleryThumbnails);
+	homeAbout && new removeEmptyParagraphs(homeAbout);
 
-	// 	wooGalleryThumbnails.forEach(thumbnail => {
-	// 		thumbnail.addEventListener("click", e => {
-	// 			e.preventDefault();
-	// 			console.log(`thumbevent: ${e.target}`);
-	// 		});
-	// 	});
-	// }
+	const categoryShortDescription = document.querySelector(
+		".category-short-description"
+	);
+
+	categoryShortDescription &&
+		new removeEmptyParagraphs(categoryShortDescription);
 });
 
 // const closePromo = document.querySelector("#close-promo");

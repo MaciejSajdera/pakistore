@@ -20,6 +20,11 @@ $carousel_image_3 = get_field('carousel_image_3', $post->ID);
 $carousel_image_position_3 = get_field('carousel_image_position_3', $post->ID);
 $carousel_image_3_header = get_field('carousel_image_3_header', $post->ID);
 $carousel_image_3_subheader = get_field('carousel_image_3_subheader', $post->ID);
+
+$carousel_image_4 = get_field('carousel_image_4', $post->ID);
+$carousel_image_position_4 = get_field('carousel_image_position_4', $post->ID);
+$carousel_image_4_header = get_field('carousel_image_4_header', $post->ID);
+$carousel_image_4_subheader = get_field('carousel_image_4_subheader', $post->ID);
 ?>
 
 <section class="main-carousel">
@@ -29,29 +34,37 @@ $carousel_image_3_subheader = get_field('carousel_image_3_subheader', $post->ID)
     <div class="swiper-wrapper">
         <!-- Slides -->
 		<div class="swiper-slide" style="background-image: url(<?php echo $carousel_image_1 ?>); background-position: <?php echo $carousel_image_position_1 ?>;">
-		<div class="parallax-title" data-swiper-parallax="-100">
+			<div class="parallax-title" data-swiper-parallax="-100">
 
-			<?php
-				echo '<h2>' .$carousel_image_1_header. '</h2>';
-				echo '<p>' .$carousel_image_1_subheader. '</p>';
-			?>
-        </div>
+				<?php
+					echo '<h2>' .$carousel_image_1_header. '</h2>';
+					echo '<p>' .$carousel_image_1_subheader. '</p>';
+				?>
+			</div>
 		</div>
 		<div class="swiper-slide" style="background-image: url(<?php echo $carousel_image_2 ?>); background-position: <?php echo $carousel_image_position_2 ?>;">
-		<div class="parallax-title" data-swiper-parallax="-100">
-		<?php
-				echo '<h2>' .$carousel_image_2_header. '</h2>';
-				echo '<p>' .$carousel_image_2_subheader. '</p>';
-			?>
-		</div>
+			<div class="parallax-title" data-swiper-parallax="-100">
+			<?php
+					echo '<h2>' .$carousel_image_2_header. '</h2>';
+					echo '<p>' .$carousel_image_2_subheader. '</p>';
+				?>
+			</div>
 		</div>
 		<div class="swiper-slide" style="background-image: url(<?php echo $carousel_image_3 ?>); background-position: <?php echo $carousel_image_position_3 ?>;">
-		<div class="parallax-title" data-swiper-parallax="-100">
-		<?php
-				echo '<h2>' .$carousel_image_3_header. '</h2>';
-				echo '<p>' .$carousel_image_3_subheader. '</p>';
-			?>
+			<div class="parallax-title" data-swiper-parallax="-100">
+			<?php
+					echo '<h2>' .$carousel_image_3_header. '</h2>';
+					echo '<p>' .$carousel_image_3_subheader. '</p>';
+				?>
+			</div>
 		</div>
+		<div class="swiper-slide" style="background-image: url(<?php echo $carousel_image_4 ?>); background-position: <?php echo $carousel_image_position_4 ?>;">
+			<div class="parallax-title" data-swiper-parallax="-100">
+			<?php
+					echo '<h2>' .$carousel_image_4_header. '</h2>';
+					echo '<p>' .$carousel_image_4_subheader. '</p>';
+				?>
+			</div>
 		</div>
     </div>
     <!-- If we need pagination -->

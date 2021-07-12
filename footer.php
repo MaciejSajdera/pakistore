@@ -17,10 +17,14 @@ $cookie_info = get_field('cookie_info', get_option( 'page_on_front' ));
 
 		<div class="page">
 
-			<div class="content-container advantages-content-container">
-				<?php
-					get_template_part( 'template-parts/home-advantages', 'page' );
-				?>
+			<div class="advantages-wrapper">
+
+				<div class="advantages-content-container">
+					<?php
+						get_template_part( 'template-parts/home-advantages', 'page' );
+					?>
+				</div>
+
 			</div>
 
 			<div class="site-info">
@@ -30,32 +34,39 @@ $cookie_info = get_field('cookie_info', get_option( 'page_on_front' ));
 
 				</div> -->
 			
-				<div class="site-footer__main content-container">
+				<div class="site-footer__main">
+
 					
 					<div class="col col-1">
-					<h3>Siedziba</h3>
-					<p>Adres 1</p>
-					<p>Adres 2</p>
-					<p>dział obsługi Klienta: +48 123 456 789</p>
-					<p>mail@sklep.pl</p>
+
+						<h3>Siedziba</h3>
+						<p><?php echo get_field('company_full_name', get_page_by_title( 'Kontakt' ))?></p>
+						<p><?php echo get_field('address_1', get_page_by_title( 'Kontakt' )) ?></p>
+						<p><?php echo get_field('address_2', get_page_by_title( 'Kontakt' )) ?></p>
+						<p>dział obsługi Klienta: <a href="tel:<?php echo get_field('phone_number', get_page_by_title( 'Kontakt' ));?>"><?php echo get_field('phone_number', get_page_by_title( 'Kontakt' ));?></a></p>
+						<p><a href="mailto: <?php echo get_field('email', get_page_by_title( 'Kontakt' ));?>"><?php echo get_field('email', get_page_by_title( 'Kontakt' ));?></a></p>
 
 					</div>
 
 					<div class="col col-2">
-					<!-- <div id="instagram-feed-demo" class="instagram_feed"></div> -->
-					<h3>Pomoc</h3>
-					<p><a class="terms-link" href="<?php echo get_permalink(3) ?>">Polityka prywatności</a></p>
-					<p><a class="terms-link" href="<?php echo get_permalink(213) ?>">Regulamin sklepu internetowego</a></p>
-					<p><a class="terms-link" href="<?php echo get_permalink(216) ?>">Dostawa</a></p>
-					<p><a class="terms-link" href="<?php echo get_permalink(3589) ?>">Reklamacje i zwroty</a></p>
+						<h3>Pomoc</h3>
+
+						<?php
+							$privacy_policy_page_id = get_option( 'wp_page_for_privacy_policy' );
+							$wc_terms_and_conditions_page_id = wc_terms_and_conditions_page_id();
+						?>
+
+						<p><a class="terms-link" href="<?php echo get_permalink($privacy_policy_page_id) ?>"><?php echo get_the_title( $privacy_policy_page_id ) ?></a></p>
+						<p><a class="terms-link" href="<?php echo get_permalink($wc_terms_and_conditions_page_id) ?>"><?php echo get_the_title( $wc_terms_and_conditions_page_id) ?></a></p>
+						<p><a class="terms-link" href="<?php echo get_permalink(216) ?>">Dostawa</a></p>
+
 					</div>
 
 					<div class="col col-3">
-					<!-- <div id="instagram-feed-demo" class="instagram_feed"></div> -->
-					<h3>Metody płatności</h3>
-					<p class="payment-method method-paypal"></p>
-					<p class="payment-method method-przelewy24"></p>
-					<p class="payment-method method-zapobraniem"></p>
+						<h3>Metody płatności</h3>
+						<p class="payment-method method-paypal"></p>
+						<p class="payment-method method-przelewy24"></p>
+						<p class="payment-method method-zapobraniem"></p>
 					</div>
 
 				</div>

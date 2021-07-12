@@ -143,12 +143,12 @@ add_action( 'widgets_init', 'pakistore_widgets_init' );
  * Enqueue scripts and styles.
  */
 function pakistore_scripts() {
-	wp_enqueue_style( 'pakistore-style', get_template_directory_uri() . '/dist/css/style.css', array(), '4.5');
+	wp_enqueue_style( 'pakistore-style', get_template_directory_uri() . '/dist/css/style.css', array(), '5.61');
 
-	wp_enqueue_script( 'pakistore-app', get_template_directory_uri() . '/dist/js/main.js', array(), '4.5', true );
+	wp_enqueue_script( 'pakistore-app', get_template_directory_uri() . '/dist/js/main.js', array(), '5.61', true );
 
 	if (is_front_page()) {
-		wp_enqueue_script( 'pakistore-carousel', get_template_directory_uri() . '/dist/js/carousel.js', array(), '4.5', true );
+		wp_enqueue_script( 'pakistore-carousel', get_template_directory_uri() . '/dist/js/carousel.js', array(), '5.61', true );
 	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -156,7 +156,7 @@ function pakistore_scripts() {
 	}
 
 	if ( is_singular() && is_product()) {
-		wp_enqueue_script( 'single-product', get_template_directory_uri() . '/dist/js/single-product.js', array(), '4.5', true );
+		wp_enqueue_script( 'single-product', get_template_directory_uri() . '/dist/js/single-product.js', array(), '5.61', true );
 	}
 
 	if ( is_cart() ) {
@@ -400,128 +400,36 @@ function wc_register_form_password_repeat() {
 
 /* Products Archive */
 
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-add_action( 'woocommerce_results_and_ordering', 'woocommerce_catalog_ordering', 20 );
-
-remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
-add_action( 'woocommerce_results_and_ordering', 'woocommerce_result_count', 10 );
-
-// function wholeseller_role_cat( $q ) {
-
-//     // Get the current user
-//     $current_user = wp_get_current_user();
-
-//     if ( in_array( 'wholesale_customer', $current_user->roles ) ) {
-//         // Set here the ID for Wholesale category 
-
-// 		add_filter( 'woocommerce_get_price_html', 'info_for_whosale', 9999, 2 );
- 
-// 		function info_for_whosale( $price, $product ){
-		 
-// 		if ( '' === $product->get_price() || 0 == $product->get_price() ) {
-		 
-// 		$price = '<span class="tylko dla wholesale"></span>';
-		 
-// 		}
-		
-// 		return $price;
-		
-// 		}
-
-//     } else {
-
-// 		$meta_query = $q->get( 'meta_query' );
- 
-//         $meta_query[] = array(
- 
-//                     'key'       => '_price',
- 
-//                     'value'     => 0,
- 
-//                     'compare'   => '>'
- 
-//                 );
-//     $q->set( 'meta_query', $meta_query );
-
-//     }
-// }
-// add_action( 'woocommerce_product_query', 'wholeseller_role_cat' );
+// Get the current category id if we are on an archive/category page
+function getCurrentCatID(){
+	global $wp_query;
+	if(is_category() || is_single()){
+		$cat_ID = get_query_var('cat');
+	}
+	return $cat_ID;
+}
 
 
-//custom input fields in woocommerce registration form when wholesale customer creates account
+apply_filters('category_archive_meta', '<div class="taxonomy-description">' . wpautop( $category_description ) . '</div>');
 
-// add_action( 'woocommerce_register_form', 'add_custom_register_form_fields' );
+// remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+// add_action( 'woocommerce_results_and_ordering', 'woocommerce_catalog_ordering', 20 );
 
-// function add_custom_register_form_fields() {
+// remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+// add_action( 'woocommerce_results_and_ordering', 'woocommerce_result_count', 10 );
 
-// 	woocommerce_form_field(
+add_action('woocommerce_archive_description', 'woocommerce_category_description', 2);
 
-// 		'billing_company',
+function woocommerce_category_description() {
+    if (is_product_category()) {
+        global $wp_query;
+        $cat = $wp_query->get_queried_object();
+		$description = $cat->description;
 
-// 		array(
-// 			'type'        => 'text',
-// 			'required'    => true, // just adds an "*"
-// 			'label'       => 'Nazwa Firmy',
-// 			'class' => array('my-custom-form-field'),
-// 		),
-// 		( isset($_POST['billing_company']) ? $_POST['billing_company'] : '' )
-// 	);
- 
-// 	woocommerce_form_field(
-
-// 		'billing_vat',
-
-// 		array(
-// 			'type'        => 'text',
-// 			'required'    => true, // just adds an "*"
-// 			'label'       => 'Numer NIP',
-// 			'class' => array('my-custom-form-field'),
-// 		),
-// 		( isset($_POST['billing_vat']) ? $_POST['billing_vat'] : '' )
-// 	);
-// }
-
-
-// add_action( 'woocommerce_register_post', 'validate_custom_form_fields', 10, 3 );
- 
-// function validate_custom_form_fields( $username, $email, $errors ) {
- 
-// 	if ( empty( $_POST['billing_vat'] ) ) {
-// 		$errors->add( 'billing_vat_error', 'We really want to know!' );
-// 	}
- 
-// }
-
-
-// add_action( 'woocommerce_created_customer', 'save_register_fields_to_database' );
- 
-// function save_register_fields_to_database( $customer_id ){
- 
-// 	if ( isset( $_POST['billing_vat'] ) ) {
-// 		update_user_meta( $customer_id, 'billing_vat', wc_clean( $_POST['billing_vat'] ) );
-// 	}
-
-// 	if ( isset( $_POST['billing_company'] ) ) {
-// 		update_user_meta( $customer_id, 'billing_company', wc_clean( $_POST['billing_company'] ) );
-// 	}
-// }
-
-//change myaccount endpoints
-// function wpb_woo_my_account_order() {
-// 	$myorder = array(
-// 		'my-custom-endpoint' => __( 'My Stuff', 'woocommerce' ),
-// 		'edit-account'       => __( 'Change My Details', 'woocommerce' ),
-// 		'dashboard'          => __( 'Dashboard', 'woocommerce' ),
-// 		'orders'             => __( 'Orders', 'woocommerce' ),
-// 		'downloads'          => __( 'Download MP4s', 'woocommerce' ),
-// 		'edit-address'       => __( 'Addresses', 'woocommerce' ),
-// 		'payment-methods'    => __( 'Payment Methods', 'woocommerce' ),
-// 		'customer-logout'    => __( 'Logout', 'woocommerce' ),
-// 	);
-
-// 	return $myorder;
-// }
-// add_filter ( 'woocommerce_account_menu_items', 'wpb_woo_my_account_order' );
+		//wpautop - changes the new and empty lines into paragraph tags automatically.
+		echo wpautop( $description );
+    }
+}
 
 
 function custom_override_default_address_fields( $address_fields ) {
@@ -790,7 +698,7 @@ add_action( 'woocommerce_before_shop_loop_item_title', 'bbloomer_new_badge_shop_
           
 // function bbloomer_new_badge_shop_page() {
 //    global $product;
-// //    $newness_days = 2;
+// //    $newness_days = 14;
 // //    $created = strtotime( $product->get_date_created() );
 //    if ( has_term( 39, 'product_cat' ) ) {
 //       echo '<span class="itsnew">' . esc_html__( 'Nowość!', 'woocommerce' ) . '</span>';
@@ -819,7 +727,7 @@ function bbloomer_best_badge_shop_page() {
    if ( has_term( 40, 'product_cat' ) ) {
 	  echo '<div class="bestseller-wrapper">';
 	//   echo '<span class="bestseller"></span>';
-	  echo '<span>' . esc_html__( 'bestseller', 'woocommerce' ) . '</span>';
+	  echo '<span>' . esc_html__( 'bestseller!', 'woocommerce' ) . '</span>';
 	  echo '</div>';
    }
 }

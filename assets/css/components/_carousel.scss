@@ -1,6 +1,7 @@
 .main-carousel {
 	height: 70vh;
 	width: 100%;
+	padding-top: 1rem;
 
 	@media screen and (min-height: 736px) and (max-width: 992px) {
 		height: 70vh;
@@ -86,17 +87,18 @@
 		align-items: center;
 		height: 100%;
 		color: white;
+		padding: 0 2rem;
 
 		h2 {
 			text-align: center;
 
 			@media screen and (max-width: 992px) {
-				@include fluid-type($min_width, $max_width, 36px, 45px);
+				@include fluid-type($min_width, $max_width, 22px, 24px);
 			}
 
 			@media screen and (min-width: 992px) {
 				margin: 0 auto 0;
-				@include fluid-type($min_width, $max_width, 56px, 64px);
+				@include fluid-type($min_width, $max_width, 22px, 24px);
 			}
 		}
 
@@ -109,27 +111,27 @@
 			margin: 0;
 
 			@media screen and (max-width: 992px) {
-				@include fluid-type($min_width, $max_width, 20px, 25px);
+				@include fluid-type($min_width, $max_width, 18px, 20px);
 			}
 
 			@media screen and (min-width: 992px) {
-				@include fluid-type($min_width, $max_width, 18px, 24px);
+				@include fluid-type($min_width, $max_width, 18px, 20px);
 			}
 		}
-		p:after {
-			content: "";
-			background: white;
-			height: 1px;
-			width: 110%;
-			position: absolute;
-			left: 50%;
-			top: 120%;
-			transform: translate(-50%, -50%);
+		// p:after {
+		// 	content: "";
+		// 	background: white;
+		// 	height: 1px;
+		// 	width: 110%;
+		// 	position: absolute;
+		// 	left: 50%;
+		// 	top: 120%;
+		// 	transform: translate(-50%, -50%);
 
-			@media screen and (max-width: 992px) {
-				height: 2px;
-			}
-		}
+		// 	@media screen and (max-width: 992px) {
+		// 		height: 2px;
+		// 	}
+		// }
 	}
 }
 
@@ -163,9 +165,10 @@
 
 .categories-carousel {
 	width: 100%;
+	padding-bottom: 4rem;
 
 	@media screen and (max-width: 992px) {
-		margin-bottom: 7em;
+		padding-bottom: 7em;
 		text-align: center;
 	}
 
@@ -181,7 +184,9 @@
 		justify-content: center;
 
 		@media screen and (min-width: 992px) {
-			text-align: left;
+			justify-content: space-evenly;
+			max-width: 80%;
+			margin: 4rem auto;
 		}
 
 		@media screen and (max-width: 992px) {
@@ -193,33 +198,37 @@
 	.swiper-pagination-bullet {
 		// width: auto;
 		background: transparent;
-		margin: 0.5em 2em !important;
+		// margin: 0.5em 2em !important;
 		opacity: 1;
-		@include fluid-type($min_width, $max_width, 12px, 16px);
-		height: 32px;
-		border-radius: 15px;
-		padding: 0.25em 2em;
-		color: $color_dark_blue;
+		@include fluid-type($min_width, $max_width, 16px, 18px);
+		// height: 32px;
+		// border-radius: 15px;
+		// color: $color_dark_blue;
+		padding: 0.25em 0.25em;
 		position: relative;
-		// width: 200px;
-		width: 100%;
+		width: fit-content;
+		height: 100%;
+		display: block;
 		text-align: center;
-		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+		border-radius: 0;
+		// box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 		transition: all 0.2s ease-in-out;
 		font-weight: 600;
+		border-bottom: 2px solid transparent;
 
-		@media screen and (max-width: 992px) {
-			margin: 0 0.5em !important;
-			padding: 0.25em 1em;
-			// width: 100px;
-			width: 140px;
-			line-height: 2;
-		}
+		// @media screen and (max-width: 992px) {
+		// 	margin: 0 0.5em !important;
+		// 	padding: 0.25em 1em;
+		// 	// width: 100px;
+		// 	width: 140px;
+		// 	line-height: 2;
+		// }
 	}
 
 	.swiper-pagination-bullet-active {
-		background: $color_dark_blue;
-		color: $color_white_text;
+		// background: $color_dark_blue;
+		// color: $color_white_text;
+		border-bottom: 2px solid #474596;
 		// box-shadow: inset 0 0px 0px rgb(0 0 0 / 8%),
 		// 	0px 0px 15px rgb(102 175 233 / 69%);
 	}
@@ -228,6 +237,14 @@
 		padding: 1em;
 		@media screen and (max-width: 992px) {
 			padding: 2em 1em 1em 1em;
+		}
+	}
+
+	.txt-centered {
+		padding: 4rem 0;
+
+		@media screen and (min-width: 992px) {
+			padding: 0 0 4rem;
 		}
 	}
 }

@@ -55,134 +55,76 @@ do_action( 'woocommerce_before_main_content' );
 		 * @hooked woocommerce_taxonomy_archive_description - 10
 		 * @hooked woocommerce_product_archive_description - 10
 		 */
-		do_action( 'woocommerce_archive_description' );
+		// do_action( 'woocommerce_archive_description' );
 		?>
-
-		<div class="woocommerce-results-and-ordering">
-		
-		<?php do_action( 'woocommerce_results_and_ordering' ); ?>
-		
-		</div>
 
 	</header>
 
 	<?php
 
-		// 	$body_classes = get_body_class();
+		$term = get_queried_object();
 
-		// if (is_shop(10) && !in_array('woof_search_is_going', $body_classes) && !in_array('search-results', $body_classes) && !in_array('search-no-results', $body_classes)  )  {
-
-		// 	echo '<div class="shop-category-menu>';
-
-		// 	wp_nav_menu(
-		// 		array(
-		// 			'theme_location' => 'special-categories-menu',
-		// 			'depth' => 1
-		// 		)
-		// 	);
-
-		// 	echo '</div>';
-
-		// 	// $hide_empty = false ;
-		// 	// $cat_args = array(
-		// 	// 	'orderby'    => 'name',
-		// 	// 	'order' => 'ASC',
-		// 	// 	'hide_empty' => $hide_empty,
-		// 	// 	'parent' => 0
-		// 	// );
-
-		// 	// $product_categories = get_terms( 'product_cat', $cat_args );
-
-		// 	// if( !empty($product_categories) ){
-
-		// 	// 	echo '<div class="categories-grid shop-grid1">';
-
-		// 	// 	foreach ($product_categories as $key => $category) {
-
-		// 	// 		$thumbnail_id = get_term_meta( $category->term_id, 'thumbnail_id', true );
-		// 	// 		$category_name = $category->name;
-		// 	// 		$image = wp_get_attachment_url( $thumbnail_id );
-
-		// 	// 		if (!$image) {
-		// 	// 			$image = wc_placeholder_img_src();
-		// 	// 		}
-
-		// 	// 		// echo '<a class="brand-tile" href="'.get_term_link($category).'" >';
-		// 	// 		// echo '<p>' .$category_name. '</p>';
-		// 	// 		// echo '<img src="'.$image.'">';
-		// 	// 		// echo '</a>';
-
-		// 	// 		echo '<a class="category-tile" href="'.get_term_link($category).'">';
-		// 	// 			echo '<div style="background-image: url('.$image.')";></div>';
-		// 	// 			echo '<p>' .$category_name. '</p>';
-		// 	// 		echo '</a>';
-		// 	// 	}
-
-		// 	// 	echo '</div>';
-		// 	// }
-
-		// } else  {
+		$children = get_terms( $term->taxonomy, array(
+		'parent'    => $term->term_id,
+		'hide_empty' => false
+		) );
 
 
-			$category_name = get_query_var('category_name');
+		if ( is_product_category() && $children ) {
 
-			$args = array('parent' => $category_name);
-			$categories = get_categories( $args );
+			$short_description = get_field('category_short_description', $term);
 
+			echo '<div class="category-short-description">';
 
-			if ( is_product_category() ) {
+				echo $short_description;
 
-				$term_id  = get_queried_object_id();
-				$taxonomy = 'product_cat';
-		
-				// Get subcategories of the current category
-				$terms    = get_terms([
-					'taxonomy'    => $taxonomy,
-					'order' => 'ASC',
-					'hide_empty'  => true,
-					'parent'      => $term_id,
-				]);
+			echo '</div>';
 
-				$count = sizeof($terms);
+			$term_id  = get_queried_object_id();
+			$taxonomy = 'product_cat';
+	
+			// Get subcategories of the current category
+			$subcategories    = get_terms([
+				'taxonomy'    => $taxonomy,
+				'order' => 'ASC',
+				'hide_empty'  => false,
+				'parent'      => $term_id,
+			]);
 
-				$how_long;
-
-				if ($count <= 10) {
-					$how_long = 'subcategories-list__short';
-				} 
-				elseif ($count > 10) {
-					$how_long = 'subcategories-list__long';
-				} 
-
-
-				echo '<ul class="subcategories-list '. $how_long .'">';
-		
-				// Loop through product subcategories WP_Term Objects
-				foreach ( $terms as $term ) {
-					$term_link = get_term_link( $term, $taxonomy );
-		
-					echo '<li class="'. $term->slug .'"><a href="'. $term_link .'" class="checkout-button button alt wc-forward my-checkout-button">'. $term->name .'</a></li>';
-				}
-		
-				echo '</ul>';
+			echo '<ul class="subcategories-list">';
+	
+			// Loop through product subcategories WP_Term Objects
+			foreach ( $subcategories as $subcategory ) {
+				$subcategory_link = get_term_link( $subcategory, $taxonomy );
+				$image = get_field('category_image', $subcategory);
+	
+				echo '<li><a href="'. $subcategory_link .'"><img src="'.$image.'" />'. $subcategory->name .'</a></li>';
 			}
+	
+			echo '</ul>';
+		} else {
 
 			?>
-			<div class="wrapper-flex-column shop-wrapper">
 
+				<div class="wrapper-flex-column shop-wrapper">
 
-				<div class="woof-filter sidebar-filters">
+				<!-- <div class="filters-and-sorts__wrapper"> -->
 
+					<div class="woocommerce-results-and-ordering">
 
-				<p id="toggle-filters">Filtry <span class="filters-icon"></span></p>
+						<!-- <?php do_action( 'woocommerce_results_and_ordering' ); ?> -->
+					
+					</div>
 
-				<?= do_shortcode('[woof]') ?>
+					<div class="woof-filter sidebar-filters">
 
-				
+						<p id="toggle-filters">Filtry <span class="filters-icon"></span></p>
 
-				
+						<?php echo do_shortcode('[woof]') ?>
 
-				</div>
+					</div>
+
+				<!-- </div> -->
 
 
 				<div class="main-shop-products">
@@ -251,7 +193,22 @@ do_action( 'woocommerce_before_main_content' );
 
 				?>
 				</div>
+				</div>
+
+			<?php
+
+			
+		}
+
+			?>
+			
+
+			<div class="content-container category-description-wrapper">
+			
+				<?php do_action( 'woocommerce_archive_description' ); ?>
+
 			</div>
+
 		<!-- </div> -->
 			<!-- woocommerce-archive__right-column -->
 	<!-- </div>  -->

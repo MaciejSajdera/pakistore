@@ -225,17 +225,17 @@ main {
 }
 
 .move-up {
-	transform: translateY(15em);
-	opacity: 0;
-	animation: moveUp 2s forwards;
+	// transform: translateY(15em);
+	// opacity: 0;
+	animation: moveUp 1s forwards;
 
 	@keyframes moveUp {
 		0% {
-			transform: translateY(15em);
+			transform: translateY(10em);
 			opacity: 0;
 		}
 
-		75% {
+		95% {
 			transform: translateY(0em);
 			opacity: 1;
 		}

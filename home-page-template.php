@@ -37,22 +37,19 @@ get_header();
 
 				<div class="content-container">
 					<?php
+						get_template_part( 'template-parts/promo-banner', 'page' );
+					?>
+				</div>
+
+
+				<div class="content-container">
+					<?php
 						get_template_part( 'template-parts/home-categories-display', 'page' );
 					?>
 				</div>
 
-				<?php
-					// get_template_part( 'template-parts/home-categories-descriptions-random', 'page' );
-				?>
-
 			</div>
 
-		</div>
-
-		<div class="content-container">
-			<?php
-				// get_template_part( 'template-parts/home-brands-showcase', 'page' );
-			?>
 		</div>
 
 		<div class="content-container">

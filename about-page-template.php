@@ -5,118 +5,39 @@
  * description: >-
   Page template without sidebar
  */
-
+$imageURL = get_the_post_thumbnail_url();
 get_header();
 ?>
 <div id="primary" class="content-area">
 
-	<main id="primary" class="home-about">
+	<main id="primary" class="home-about content-container">
 
-	<?php
-		while ( have_posts() ) :
-			the_post();
+		<div class="home-about__content">
 
+			<?php
+				while ( have_posts() ) :
+					the_post();
+
+					the_content();
+
+					// If comments are open or we have at least one comment, load up the comment template.
+					// if ( comments_open() || get_comments_number() ) :
+					// 	comments_template();
+					// endif;
+
+				endwhile; // End of the loop.
 			?>
-			<header class="entry-header common-template">
-			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			</header><!-- .entry-header -->
-			<?php pakistore_post_thumbnail();
+		</div>
 
-			?>
-			<div class="page-wrapper">
-				<?php
-				$page_header = get_field('page_header');
-				$page_subheader_1 = get_field('page_subheader_1');
-				$page_textarea_1 = get_field('page_textarea_1');
-				$page_subheader_2 = get_field('page_subheader_2');
-				$page_textarea_2 = get_field('page_textarea_2');
-				$page_subheader_3 = get_field('page_subheader_3');
+		<div class="home-about__image">
 
-				if ($page_header) :
-				echo '<h1 class="common-page-header">' .$page_header. '</h1>';
-				endif;
-				if ($page_subheader_1) :
-				echo '<p class="common-page-subheader">' .$page_subheader_1. '</p>';
-				endif;
-				if ($page_textarea_1) :
-					echo '<div class="page-textarea"><p>' .$page_textarea_1. '</p></div>';
-				endif;
+				
+			<img src=<?php echo $imageURL ?> />
+		</div>
 
+	</main>
 
-				$team = get_field('team');
-				?>
-				<div class="team-container wrapper-flex-column">
-					<div class="team-inner">
-					<img src="<?php echo esc_url( $team['team_photo'] ); ?>" alt="<?php echo esc_attr( $offer['image']['alt'] ); ?>" />
-					
-					<h5>
-						<?php echo $team['team_member_1_text']; ?>
-						<a href="tel:<?php echo $team['team_member_1_contact']; ?>"><?php echo $team['team_member_1_contact']; ?></a>
-					</h5>
-					<h5>
-						<?php echo $team['team_member_2_text']; ?>
-						<a href="tel:<?php echo $team['team_member_2_contact']; ?>"><?php echo $team['team_member_2_contact']; ?></a>
-					</h5>
-					<h5>
-						<?php echo $team['team_member_3_text']; ?>
-						<a href="tel:<?php echo $team['team_member_3_contact']; ?>"><?php echo $team['team_member_3_contact']; ?></a>
-					</h5>
-
-
-
-					</div>
-					<div class="logo"><?php the_custom_logo()?></div>
-
-			</div><?php
-
-
-
-				if ($page_subheader_2) :
-					echo '<p class="common-page-subheader">' .$page_subheader_2. '</p>';
-				endif;
-
-				if ($page_textarea_2) :
-					echo '<div class="page-textarea"><p>' .$page_textarea_2. '</p></div>';
-				endif;
-				if ($page_subheader_3) :
-					echo '<p class="common-page-subheader">' .$page_subheader_3. '</p>';
-				endif;
-
-				$offer = get_field('offer');
-				if( $offer ): ?>
-					<div class="offer-container">
-
-						<div class="offer-box">
-							<img src="<?php echo esc_url( $offer['offer_1_image'] ); ?>" alt="<?php echo esc_attr( $offer['image']['alt'] ); ?>" />
-							<div class="content">
-								<p class="offer-text"><?php echo $offer['offer_1_text']; ?></p>
-							</div>
-						</div>
-
-						<div class="offer-box">
-							<img src="<?php echo esc_url( $offer['offer_2_image'] ); ?>" alt="<?php echo esc_attr( $offer['image']['alt'] ); ?>" />
-							<div class="content">
-								<p class="offer-text"><?php echo $offer['offer_2_text']; ?></p>
-							</div>
-						</div>
-
-						<div class="offer-box">
-							<img src="<?php echo esc_url( $offer['offer_3_image'] ); ?>" alt="<?php echo esc_attr( $offer['image']['alt'] ); ?>" />
-							<div class="content">
-								<p class="offer-text"><?php echo $offer['offer_3_text']; ?></p>
-							</div>
-						</div>
-					</div>
-				<?php endif;
-
-		?></div><?php
-		endwhile; // End of the loop.
-		?>
-
-
-
-</main>
-	</div>
+</div>
 
 	
 <?php

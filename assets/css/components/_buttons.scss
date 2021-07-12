@@ -24,7 +24,7 @@
 .woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button.my-checkout-button {
-	@include fluid-type($min_width, $max_width, 14px, 20px);
+	@include fluid-type($min_width, $max_width, 18px, 20px);
 }
 
 .woocommerce-message {
@@ -91,6 +91,7 @@
 }
 
 .read-more,
+.wpcf7-submit,
 .read-more:visited {
 	background-color: $color__background-main-theme--dark !important;
 	// width: fit-content !important;
@@ -113,9 +114,11 @@
 .mobile-to-shop-button {
 	width: 100%;
 	text-align: center;
-	height: 3em;
-	line-height: 1.75em;
-	font-size: 22px;
+	// height: 3em;
+	// line-height: 1.75em;
+	// display: block;
+	// max-width: 300px;
+	margin: auto;
 	margin-bottom: 2em;
 }
 
@@ -136,7 +139,7 @@
 
 	&:hover {
 		background-color: $color_dark_blue !important;
-		border: 1px solid $color_dark_blue !important;
+		border: 2px solid $color_dark_blue !important;
 		color: $color_white_text !important;
 	}
 }
@@ -146,14 +149,29 @@
 	width: fit-content;
 	color: $color_dark_blue;
 	font-weight: 600;
-	border-radius: 100rem;
+	border-radius: 10px;
 	text-decoration: none;
 	transition: all 0.2s ease-in;
 	border: 2px solid $color_dark_blue;
 	cursor: pointer;
-	width: 100%;
-	padding: 0.5em 1em 0.5em 2em;
-	@include fluid-type($min_width, $max_width, 13px, 15px);
+
+	padding: 0.5em 1em;
+	min-width: 100px;
+	margin: 0 0 auto 0;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 1em;
+
+	.filters-icon {
+		display: block;
+		background: url(../dist/svg/filters-advanced.svg) no-repeat;
+		background-size: contain;
+
+		width: 20px;
+		height: 20px;
+	}
 }
 
 .outline-button {
@@ -172,8 +190,7 @@
 	}
 }
 
-.my-submit-button,
-.wpcf7-submit {
+.my-submit-button {
 	background-color: $color_baby_blue !important;
 	border: 0 !important;
 	border-radius: 0 !important;

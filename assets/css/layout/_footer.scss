@@ -74,6 +74,30 @@ footer#colophon {
 	}
 
 	.site-footer__main {
+		background: inherit;
+
+		margin: auto;
+
+		@media screen and (max-width: 768px) {
+			// padding: 0em 5% 1em 5%;
+			width: auto;
+			width: 90%;
+		}
+
+		@media screen and (min-width: 768px) {
+			width: 750px;
+		}
+
+		@media screen and (min-width: 992px) {
+			// padding: 0em 5% 0em 5%;
+			width: 970px;
+		}
+
+		@media screen and (min-width: 1200px) {
+			// padding: 0em 10% 0em 10%;
+			width: 1170px;
+		}
+
 		@media screen and (max-width: 992px) {
 			padding-top: 3em;
 
@@ -82,19 +106,14 @@ footer#colophon {
 			}
 		}
 
-		a:hover {
-			color: inherit !important;
-		}
-
 		@media screen and (min-width: 992px) {
 			display: flex;
 			justify-content: space-between;
-			width: 100%;
 			margin: 2em auto;
+		}
 
-			// .col {
-			// 	margin-right: 2em;
-			// }
+		a:hover {
+			color: inherit !important;
 		}
 	}
 
