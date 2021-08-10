@@ -58,7 +58,8 @@ $cookie_info = get_field('cookie_info', get_option( 'page_on_front' ));
 
 						<p><a class="terms-link" href="<?php echo get_permalink($privacy_policy_page_id) ?>"><?php echo get_the_title( $privacy_policy_page_id ) ?></a></p>
 						<p><a class="terms-link" href="<?php echo get_permalink($wc_terms_and_conditions_page_id) ?>"><?php echo get_the_title( $wc_terms_and_conditions_page_id) ?></a></p>
-						<p><a class="terms-link" href="<?php echo get_permalink(216) ?>">Dostawa</a></p>
+						<p><a class="terms-link" href="<?php echo get_permalink(495) ?>">Dostawa</a></p>
+						<p><a class="terms-link" href="<?php echo get_permalink(499) ?>">Reklamacje i zwroty</a></p>
 
 					</div>
 
@@ -84,7 +85,7 @@ $cookie_info = get_field('cookie_info', get_option( 'page_on_front' ));
 				</div> -->
 
 				<div class="footer-bottom">
-				<?php echo footer_copyright(); ?> Copyright © <?php echo get_bloginfo( 'name' ); ?>
+				<?php echo footer_copyright(); ?> Copyright © Paki 
 				</div>
 				<div class="icons-info">
 					Icons made by:

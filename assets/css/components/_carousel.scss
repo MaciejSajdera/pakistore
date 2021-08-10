@@ -1,11 +1,8 @@
 .main-carousel {
 	height: 70vh;
+	height: calc(var(--vh, 1vh) * 70);
 	width: 100%;
 	padding-top: 1rem;
-
-	@media screen and (min-height: 736px) and (max-width: 992px) {
-		height: 70vh;
-	}
 
 	@media screen and (min-width: 992px) {
 		height: 60vh;

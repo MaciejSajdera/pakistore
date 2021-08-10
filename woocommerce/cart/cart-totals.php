@@ -94,9 +94,13 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
 
-		<tr class="order-total">
+		<tr class="order-total order-total__eraty">
 			<th><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
-			<td data-title="<?php esc_attr_e( 'Total', 'woocommerce' ); ?>"><?php wc_cart_totals_order_total_html(); ?></td>
+			<td data-title="<?php esc_attr_e( 'Total', 'woocommerce' ); ?>">
+			<?php wc_cart_totals_order_total_html();
+			 	//   do_action( 'woocommerce_cart_eraty_display' );
+			?>
+			</td>
 		</tr>
 
 		<?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>

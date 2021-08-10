@@ -249,8 +249,8 @@ window.addEventListener("DOMContentLoaded", event => {
 				destination &&
 					destination.scrollIntoView({
 						behavior: "smooth",
-						block: "start",
-						inline: "nearest"
+						block: "center"
+						// inline: "nearest"
 					});
 			});
 		});

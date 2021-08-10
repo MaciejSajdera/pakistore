@@ -25,9 +25,37 @@ $show_shipping_calculator = ! empty( $show_shipping_calculator );
 $calculator_text          = '';
 ?>
 <tr class="woocommerce-shipping-totals shipping">
+
+
+
 	<th><?php echo wp_kses_post( $package_name ); ?></th>
 	<td data-title="<?php echo esc_attr( $package_name ); ?>">
 		<?php if ( $available_methods ) : ?>
+
+			<?php
+
+			if (is_cart()) : ?>
+
+			<!-- <div class="filter-shipping-methods">
+
+				<div class="filter-shipping-methods__method--1">
+					<label>
+						Pobranie
+					</label>
+					<input type="checkbox" value="false">
+				</div>
+
+				<div class="filter-shipping-methods__method--2">
+					<label>
+						Przedpłata
+					</label>
+					<input type="checkbox" value="true">
+				</div>
+
+			</div> -->
+
+			<?php endif; ?>
+
 			<ul id="shipping_method" class="woocommerce-shipping-methods">
 				<?php foreach ( $available_methods as $method ) : ?>
 					<li>

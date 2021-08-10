@@ -9,11 +9,13 @@ get_header();
 ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+		<main id="main" class="site-main content-container">
 
 		<?php
 		while ( have_posts() ) :
 			the_post();
+
+			the_title( '<h1 class="entry-title">', '</h1>' );
 
 			the_content();
 

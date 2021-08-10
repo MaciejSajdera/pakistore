@@ -77,3 +77,18 @@ if ( $rating_count > 0 ) : ?>
 	</div>
 
 <?php endif; ?>
+
+<!-- E-RATY -->
+
+<!-- <div class="product-info">
+	
+	<div class="product-info__label">
+		Zakupy na raty:
+	</div>
+
+	<div class="product-info__value">
+
+	<?php do_action("my_eraty_display") ?>
+
+	</div>
+</div> -->

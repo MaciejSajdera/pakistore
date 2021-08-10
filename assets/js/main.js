@@ -942,8 +942,24 @@ window.addEventListener("DOMContentLoaded", event => {
 		".category-short-description"
 	);
 
+
 	categoryShortDescription &&
 		new removeEmptyParagraphs(categoryShortDescription);
+
+
+	const showActiveShippingMethod = () => {
+
+		const allShippingMethods = document.querySelectorAll(".shipping_method");
+
+		allShippingMethods && allShippingMethods.forEach(method => {
+			method && method.checked && method.closest("LI") ? method.closest("LI").classList.add("shipping-method--active") : '';
+		});
+	}
+
+	showActiveShippingMethod();
+	jQuery(document).on("updated_shipping_method", showActiveShippingMethod);
+	jQuery(document).on("updated_checkout", showActiveShippingMethod);
+
 });
 
 // const closePromo = document.querySelector("#close-promo");

@@ -143,12 +143,12 @@ add_action( 'widgets_init', 'pakistore_widgets_init' );
  * Enqueue scripts and styles.
  */
 function pakistore_scripts() {
-	wp_enqueue_style( 'pakistore-style', get_template_directory_uri() . '/dist/css/style.css', array(), '5.61');
+	wp_enqueue_style( 'pakistore-style', get_template_directory_uri() . '/dist/css/style.css', array(), '5.78');
 
-	wp_enqueue_script( 'pakistore-app', get_template_directory_uri() . '/dist/js/main.js', array(), '5.61', true );
+	wp_enqueue_script( 'pakistore-app', get_template_directory_uri() . '/dist/js/main.js', array(), '5.78', true );
 
 	if (is_front_page()) {
-		wp_enqueue_script( 'pakistore-carousel', get_template_directory_uri() . '/dist/js/carousel.js', array(), '5.61', true );
+		wp_enqueue_script( 'pakistore-carousel', get_template_directory_uri() . '/dist/js/carousel.js', array(), '5.78', true );
 	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -156,7 +156,7 @@ function pakistore_scripts() {
 	}
 
 	if ( is_singular() && is_product()) {
-		wp_enqueue_script( 'single-product', get_template_directory_uri() . '/dist/js/single-product.js', array(), '5.61', true );
+		wp_enqueue_script( 'single-product', get_template_directory_uri() . '/dist/js/single-product.js', array(), '5.78', true );
 	}
 
 	if ( is_cart() ) {
@@ -348,6 +348,9 @@ add_theme_support( 'post-thumbnails' );
 // remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
 // remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
 
+
+
+
 /*Declare WooCommerce support */
 function mytheme_add_woocommerce_support() {
 	add_theme_support( 'woocommerce' );
@@ -365,6 +368,15 @@ function disable_woo_commerce_sidebar() {
 }
 add_action('init', 'disable_woo_commerce_sidebar');
 
+//hide shipping from cart template
+
+add_filter( 'woocommerce_cart_needs_shipping', 'filter_cart_needs_shipping' );
+function filter_cart_needs_shipping( $needs_shipping ) {
+    if ( is_cart() ) {
+        $needs_shipping = false;
+    }
+    return $needs_shipping;
+}
 
 add_filter( 'woocommerce_min_password_strength', 'reduce_min_strength_password_requirement' );
 function reduce_min_strength_password_requirement( $strength ) {
@@ -1053,6 +1065,180 @@ function my_display_quantity_plus() {
 }
 add_action( 'woocommerce_after_add_to_cart_quantity', 'my_display_quantity_plus' );
 
+
+
+add_action('woocommerce_init', 'shipping_instance_form_fields_filters');
+
+function shipping_instance_form_fields_filters() {
+    $shipping_methods = WC()->shipping->get_shipping_methods();
+
+    foreach($shipping_methods as $shipping_method) {
+        add_filter('woocommerce_shipping_instance_form_fields_' . $shipping_method->id, 'shipping_instance_form_add_extra_fields');
+    }
+}
+
+function shipping_instance_form_add_extra_fields($settings)
+{
+    $settings['shipping_method_image'] = [
+        'title' => 'link-to-image',
+        'type' => 'text', 
+        'placeholder' => 'for example https://medycznie.com.pl/wp-content/uploads/2021/06/DPD_logo.png',
+        'description' => ''
+    ];
+
+    return $settings;
+} 
+
+
+//Remove unwanted colon from labels
+function change_cart_shipping_method_full_label( $label, $method ) {
+    $label = $method->get_label(); 
+ 
+    if ( $method->cost > 0 ) { 
+        if ( WC()->cart->tax_display_cart == 'excl' ) { 
+            $label .= ' ' . wc_price( $method->cost ); 
+            if ( $method->get_shipping_tax() > 0 && WC()->cart->prices_include_tax ) { 
+                $label .= ' <small class="tax_label">' . WC()->countries->ex_tax_or_vat() . '</small>'; 
+            } 
+        } else { 
+            $label .= ' ' . wc_price( $method->cost + $method->get_shipping_tax() ); 
+            if ( $method->get_shipping_tax() > 0 && ! WC()->cart->prices_include_tax ) { 
+                $label .= ' <small class="tax_label">' . WC()->countries->inc_tax_or_vat() . '</small>'; 
+            } 
+        } 
+    } 
+ 
+    return $label; 
+}
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'change_cart_shipping_method_full_label', 10, 2 );
+
+function filter_woocommerce_cart_shipping_method_full_label( $label, $method ) {      
+   // Targeting shipping method "Flat rate instance Id 2"
+   $delivery_option_1 = get_field('delivery_option_1', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_2 = get_field('delivery_option_2', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_3 = get_field('delivery_option_3', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_4 = get_field('delivery_option_4', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_5 = get_field('delivery_option_5', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_6 = get_field('delivery_option_6', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_7 = get_field('delivery_option_7', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_8 = get_field('delivery_option_8', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_9 = get_field('delivery_option_9', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_10 = get_field('delivery_option_10', get_option( 'woocommerce_cart_page_id' ) );
+   $delivery_option_11 = get_field('delivery_option_11', get_option( 'woocommerce_cart_page_id' ) );
+
+
+   	if( $method->id === "flat_rate:1" ) {
+       $label .= '<img src="'.$delivery_option_1.'" />';
+   	}
+	
+   	if( $method->id === "flat_rate:5" ) {
+		$label .= '<img src="'.$delivery_option_2.'" />';
+	}
+
+	if( $method->id === "flat_rate:6" ) {
+		$label .= '<img src="'.$delivery_option_3.'" />';
+	}
+
+	if( $method->id === "flat_rate:7" ) {
+		$label .= '<img src="'.$delivery_option_4.'" />';
+	}
+
+	if( $method->id === "flat_rate:8" ) {
+		$label .= '<img src="'.$delivery_option_5.'" />';
+	}
+
+	if( $method->id === "flat_rate:9" ) {
+		$label .= '<img src="'.$delivery_option_6.'" />';
+	}
+
+	if( $method->id === "flat_rate:10" ) {
+		$label .= '<img src="'.$delivery_option_7.'" />';
+	}
+
+	if( $method->id === "flat_rate:11" ) {
+		$label .= '<img src="'.$delivery_option_8.'" />';
+	}
+
+	if( $method->id === "flat_rate:12" ) {
+		$label .= '<img src="'.$delivery_option_9.'" />';
+	}
+
+	if( $method->id === "flat_rate:13" ) {
+		$label .= '<img src="'.$delivery_option_10.'" />';
+	}
+
+	if( $method->id === "flat_rate:14" ) {
+		$label .= '<img src="'.$delivery_option_11.'" />';
+	}
+
+   return $label; 
+}
+
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'filter_woocommerce_cart_shipping_method_full_label', 10, 2 ); 
+
+ /**
+ * Filter payment gateways
+ */
+function my_custom_available_payment_gateways( $gateways ) {
+
+	if (is_checkout()) {
+
+		$chosen_shipping_rates = ( isset( WC()->session ) ) ? WC()->session->get( 'chosen_shipping_methods' ) : array();
+
+			if ( in_array( 'flat_rate:1', $chosen_shipping_rates ) ) :
+				unset( $gateways['cod'] );
+			
+			elseif ( in_array( 'flat_rate:5', $chosen_shipping_rates ) ) :
+				unset( $gateways['bacs'] );
+				unset( $gateways['przelewy24'] );
+				// unset( $gateways['eraty'] );
+			
+			elseif ( in_array( 'flat_rate:6', $chosen_shipping_rates ) ) :
+				unset( $gateways['cod'] );
+
+			elseif ( in_array( 'flat_rate:7', $chosen_shipping_rates ) ) :
+				unset( $gateways['bacs'] );
+				unset( $gateways['przelewy24'] );
+				// unset( $gateways['eraty'] );
+
+			elseif ( in_array( 'flat_rate:8', $chosen_shipping_rates ) ) :
+				unset( $gateways['cod'] );
+
+			elseif ( in_array( 'flat_rate:9', $chosen_shipping_rates ) ) :
+				unset( $gateways['bacs'] );
+				unset( $gateways['przelewy24'] );
+				// unset( $gateways['eraty'] );
+			
+			elseif ( in_array( 'flat_rate:10', $chosen_shipping_rates ) ) :
+				unset( $gateways['cod'] );
+
+			elseif ( in_array( 'flat_rate:11', $chosen_shipping_rates ) ) :
+				unset( $gateways['cod'] );
+
+			elseif ( in_array( 'flat_rate:12', $chosen_shipping_rates ) ) :
+				unset( $gateways['bacs'] );
+				unset( $gateways['przelewy24'] );
+				// unset( $gateways['eraty'] );
+
+			elseif ( in_array( 'flat_rate:13', $chosen_shipping_rates ) ) :
+				unset( $gateways['cod'] );
+
+			elseif ( in_array( 'flat_rate:14', $chosen_shipping_rates ) ) :
+				unset( $gateways['bacs'] );
+				unset( $gateways['przelewy24'] );
+				// unset( $gateways['eraty'] );
+
+		endif;
+		return $gateways;
+
+	} else {
+		return;
+	}
+}
+
+add_filter( 'woocommerce_available_payment_gateways', 'my_custom_available_payment_gateways' );
+
+
 function get_free_shipping_minimum($zone_name = 'Poland') {
 	if ( ! isset( $zone_name ) ) return null;
   
@@ -1085,18 +1271,6 @@ function get_free_shipping_minimum($zone_name = 'Poland') {
 }
 
 
-// add_filter( 'flexible_shipping_free_shipping_notice_text', 'wpdesk_flexible_shipping_free_shipping_notice_text', 10, 2 );
-// function wpdesk_flexible_shipping_free_shipping_notice_text( $notice_text, $amount ) {
-//       $added_text = 'Do darmowej dostawy kurierem DPD brakuje Ci tylko:' . wc_price( $amount ) . '';
-//       $return_to = wc_get_page_permalink( 'shop' );
-//       $notice = sprintf( '<a href="%s" class="button wc-forward add_to_cart_button">%s</a> %s', esc_url( $return_to ), 'Kontynuuj zakupy', $added_text );
-
-// 	 return $notice;
-// 	 }
-
-// add_filter( 'woocommerce_cart_shipping_method_full_label', 'filter_woocommerce_cart_shipping_method_full_label', 10, 2 ); 
-
-
 function bbloomer_free_shipping_cart_notice() {
 
 	$free_shipping_min = get_free_shipping_minimum( 'Polska' );
@@ -1114,40 +1288,43 @@ function bbloomer_free_shipping_cart_notice() {
 add_action( 'woocommerce_cart_totals_before_shipping', 'bbloomer_free_shipping_cart_notice' );
 
 
-function my_hide_shipping_when_free_is_available( $rates ) {
-	$free = array();
-	foreach ( $rates as $rate_id => $rate ) {
-		if ( 'free_shipping' === $rate->method_id ) {
-			$free[ $rate_id ] = $rate;
-			break;
-		}
-	}
-	return ! empty( $free ) ? $free : $rates;
+// function my_hide_shipping_when_free_is_available( $rates ) {
+// 	$free = array();
+// 	foreach ( $rates as $rate_id => $rate ) {
+// 		if ( 'free_shipping' === $rate->method_id ) {
+// 			$free[ $rate_id ] = $rate;
+// 			break;
+// 		}
+// 	}
+// 	return ! empty( $free ) ? $free : $rates;
+// }
+// add_filter( 'woocommerce_package_rates', 'my_hide_shipping_when_free_is_available', 100 );
+
+
+add_filter( 'woocommerce_package_rates', 'wc_apply_free_shipping_to_all_methods', 10, 2 );
+
+function wc_apply_free_shipping_to_all_methods( $rates, $package ) {
+
+  if( isset( $rates['free_shipping:2'] ) ) { 
+    unset( $rates['free_shipping:2'] );
+    foreach( $rates as $rate_key => $rate ) { 
+                // Append rate label titles (free)
+                $rates[$rate_key]->label .= ' ' . __('(Darmowa wysyłka)', 'woocommerce');
+
+                // Set rate cost
+                $rates[$rate_key]->cost = 0;
+
+                // Set taxes rate cost (if enabled)
+                $taxes = array();
+                foreach ($rates[$rate_key]->taxes as $key => $tax){
+                    if( $rates[$rate_key]->taxes[$key] > 0 )
+                        $taxes[$key] = 0;
+                }
+                $rates[$rate_key]->taxes = $taxes;
+    }   
+  }
+  return $rates;
 }
-add_filter( 'woocommerce_package_rates', 'my_hide_shipping_when_free_is_available', 100 );
-
-
-function filter_woocommerce_cart_shipping_method_full_label( $label, $method ) {      
-
-	$delivery_option_1 = get_field('delivery_option_1', get_option( 'woocommerce_cart_page_id' ) );
-	$delivery_option_2 = get_field('delivery_option_2', get_option( 'woocommerce_cart_page_id' ) );
-	$delivery_option_3 = get_field('delivery_option_3', get_option( 'woocommerce_cart_page_id' ) );
- 
-		if( $method->id === "free_shipping:2" ) {
-		$label .= '<img id="free-shipping-check" src="'.$delivery_option_1.'" />';
-		}
- 
-		if( $method->id === "flat_rate:1" ) {
-		 $label .= '<img src="'.$delivery_option_2.'" />';
-	 }
- 
-	 if( $method->id === "flat_rate:2" ) {
-		 $label .= '<img src="'.$delivery_option_3.'" />';
-	 }
- 
-	return $label; 
- }
- add_filter( 'woocommerce_cart_shipping_method_full_label', 'filter_woocommerce_cart_shipping_method_full_label', 10, 2 ); 
 
 
 add_action('init', function(){
@@ -1274,6 +1451,14 @@ add_filter('loop_shop_columns',function(){return 4;});
 
 add_filter( 'woocommerce_dpd_disable_ssl_verification', '__return_true' ); 
 add_filter( 'woocommerce_dpd_disable_cache_wsdl', '__return_true' );
+
+/* E-Raty */
+
+// remove_filter('woocommerce_after_add_to_cart_button', 'eraty_product_evaluate_button');
+// add_action('my_eraty_display', 'eraty_product_evaluate_button', 10);
+
+// remove_action('woocommerce_proceed_to_checkout', 'eraty_basket_evaluate_button');
+// add_action('woocommerce_cart_eraty_display', 'eraty_basket_evaluate_button');
 
 
 //text in front of a price at singular product page

@@ -15,28 +15,60 @@ get_header();
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
+			<div class="content-container">
+
+				<header class="page-header">
+					<?php
+					the_archive_title( '<h1 class="page-title">', '</h1>' );
+					the_archive_description( '<div class="archive-description">', '</div>' );
+					?>
+				</header><!-- .page-header -->
+
+			</div>
+
+			<div class="content-container">
+
+				<div class="blog-grid"> <?php
+				/* Start the Loop */
+				while ( have_posts() ) :
+
+					the_post();
+
+					/*
+					* Include the Post-Type-specific template for the content.
+					* If you want to override this in a child theme, then include a file
+					* called content-___.php (where ___ is the Post Type name) and that will be used instead.
+					*/
+
+					echo "<div class='post-wrapper'>";
+
+						echo "<div class='post-wrapper__upper'>";
+								echo '<a class="blog-post" href="'. get_permalink() .'" style="background-image: url(' .get_the_post_thumbnail_url(). ')">';
+
+								echo '<div class="blog-post-caption">';
+								echo '<h3 class="uppercase">' . get_the_title() . '</h3>';
+								echo '</div>';
+								echo '</a>';
+
+						echo "</div>";
+
+					// the_excerpt();
+					echo '<p>'. get_excerpt(250, 'content'). '</p>';
+
+					 echo '<a class="read-more" href="'. get_permalink() .'">Czytaj dalej</a>';
+
+					echo "</div>";
+
+				endwhile;
+
 				?>
-			</header><!-- .page-header -->
+				
+				</div><!-- blog-grid -->
+			<div><!-- content-container -->
 
 			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
-
-			endwhile;
-
-			the_posts_navigation();
+			// the_posts_navigation();
 
 		else :
 
@@ -49,5 +81,5 @@ get_header();
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
+// get_sidebar();
 get_footer();

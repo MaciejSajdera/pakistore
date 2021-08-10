@@ -344,7 +344,6 @@ header.wholesale-header {
 			margin-bottom: 0.5em;
 			display: block;
 			text-align: center;
-			@include fluid-type($min_width, $max_width, 18px, 22px);
 		}
 
 		br {
@@ -377,6 +376,71 @@ header.wholesale-header {
 			padding: 1em;
 		}
 
+		.wpcf7-acceptance {
+
+			display: block;
+			margin-top: 4rem;
+
+
+			input[type="checkbox"],
+			input[type="radio"] {
+				position: relative;
+				cursor: pointer;
+				padding: 0;
+				margin-right: 10px;
+				width: 29px;
+				height: 26px;
+			}
+
+			input[type="checkbox"]:before,
+			input[type="radio"]:before {
+				content: "";
+				margin-right: 10px;
+				display: inline-block;
+				margin-top: -2px;
+				width: 30px;
+				height: 30px;
+				background: $color__background-body;
+				border: 1px solid #ccc;
+			}
+
+			input[type="checkbox"]:checked:before,
+			input[type="radio"]:checked:before {
+				background: $color_dark_blue;
+				border-color: $color__background-body;
+			}
+			input[type="checkbox"]:disabled,
+			input[type="radio"]:disabled {
+				color: $color_dark_blue;
+				cursor: auto;
+			}
+			input[type="checkbox"]:disabled:before,
+			input[type="radio"]:disabled:before {
+				box-shadow: none;
+				background: $color_dark_blue;
+			}
+			input[type="checkbox"]:checked:after,
+			input[type="radio"]:checked:after {
+				content: "";
+				position: absolute;
+				left: 10px;
+				top: 12px;
+
+				background: $color__background-body;
+				width: 3px;
+				height: 3px;
+				box-shadow: 2px 0 0 $color__background-body,
+					4px 0 0 $color__background-body, 4px -2px 0 $color__background-body,
+					4px -4px 0 $color__background-body, 4px -6px 0 $color__background-body,
+					4px -8px 0 $color__background-body;
+				transform: rotate(45deg);
+			}
+
+			.wpcf7-list-item-label {
+				@include fluid-type($min_width, $max_width, 16px, 18px);
+			}
+		}
+
 		input:focus,
 		textarea:focus {
 			outline: none;
@@ -390,8 +454,9 @@ header.wholesale-header {
 			// border: 1px solid red;
 			label {
 				display: flex;
-				flex-flow: row-reverse;
+				// flex-flow: row-reverse;
 				justify-content: center;
+				align-items: center;
 
 				@media screen and (max-width: 992px) {
 					flex-flow: column;
@@ -410,7 +475,7 @@ header.wholesale-header {
 		}
 
 		.wpcf7-submit {
-			margin: 2em auto;
+			// margin: 2em auto;
 			padding: 1.25em 1.75em !important;
 			@include fluid-type($min_width, $max_width, 14px, 18px);
 		}
@@ -924,12 +989,25 @@ p.common-page-subheader {
 }
 
 .page-template-termsandconditions {
+	.site {
+		background: $color__background-body;
+	}
+
 	#content {
 		#main {
-			padding: 0 5% 1em;
+			margin: auto;
+			// margin: 1rem 5% 1rem;
+			padding-bottom: 6rem;
 
 			@media screen and (min-width: 992px) {
-				padding: 0 15% 1em;
+				padding-top: 4rem;
+				padding-bottom: 10rem;
+				// margin: 0 15% 1em;
+			}
+
+			.entry-title {
+				text-align: center;
+				margin-bottom: 4rem;
 			}
 
 			a {
