@@ -32,11 +32,13 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'pakistore' ); ?></a>
 
-	<?php $toppromo = get_field("top_promo", get_option('page_on_front'));
+	<?php
+	
+		$toppromo = get_field("top_promo", get_option('page_on_front'));
 		$isActive = $toppromo['top_promo_active'];
 	?>
 
-	<header id="masthead" class="site-header">
+	<header id="masthead" class="site-header <?php if ($isActive == 1) : echo 'promo-header'; endif; ?>">
 		<nav id="site-navigation" class="main-navigation <?php if ($isActive == 1) : echo 'promo-navigation'; endif; ?>">
 
 			<?php

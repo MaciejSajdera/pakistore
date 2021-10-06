@@ -278,6 +278,8 @@ window.addEventListener("DOMContentLoaded", event => {
 	// 	affixContainer.classList.toggle("affix__container--active");
 	// };
 
+	const topOfThePage = document.querySelector("#masthead");
+
 	document.addEventListener("scroll", () => {
 		let isAffixActive = false;
 
@@ -295,7 +297,10 @@ window.addEventListener("DOMContentLoaded", event => {
 
 		let bottomOfThePage = document.querySelector(".site-footer__main");
 
-		if (isElementInViewport(singleAddToCartWithQty)) {
+		if (
+			isElementInViewport(singleAddToCartWithQty) ||
+			isElementInViewport(topOfThePage)
+		) {
 			isAffixActive = false;
 		} else if (isElementInViewport(bottomOfThePage)) {
 			isAffixActive = false;

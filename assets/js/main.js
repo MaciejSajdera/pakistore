@@ -81,27 +81,28 @@ window.addEventListener("DOMContentLoaded", event => {
 				active = true;
 
 				setTimeout(function() {
-					lazyImages.forEach(function(lazyImage) {
-						if (
-							lazyImage.getBoundingClientRect().top <= window.innerHeight &&
-							lazyImage.getBoundingClientRect().bottom >= 0 &&
-							getComputedStyle(lazyImage).display !== "none"
-						) {
-							lazyImage.src = lazyImage.dataset.src;
-							lazyImage.srcset = lazyImage.dataset.srcset;
-							lazyImage.classList.remove("lazy");
+					lazyImages &&
+						lazyImages.forEach(function(lazyImage) {
+							if (
+								lazyImage.getBoundingClientRect().top <= window.innerHeight &&
+								lazyImage.getBoundingClientRect().bottom >= 0 &&
+								getComputedStyle(lazyImage).display !== "none"
+							) {
+								lazyImage.src = lazyImage.dataset.src;
+								lazyImage.srcset = lazyImage.dataset.srcset;
+								lazyImage.classList.remove("lazy");
 
-							lazyImages = lazyImages.filter(function(image) {
-								return image !== lazyImage;
-							});
+								lazyImages = lazyImages.filter(function(image) {
+									return image !== lazyImage;
+								});
 
-							if (lazyImages.length === 0) {
-								document.removeEventListener("scroll", lazyLoad);
-								window.removeEventListener("resize", lazyLoad);
-								window.removeEventListener("orientationchange", lazyLoad);
+								if (lazyImages.length === 0) {
+									document.removeEventListener("scroll", lazyLoad);
+									window.removeEventListener("resize", lazyLoad);
+									window.removeEventListener("orientationchange", lazyLoad);
+								}
 							}
-						}
-					});
+						});
 
 					active = false;
 				}, 200);
@@ -756,66 +757,66 @@ window.addEventListener("DOMContentLoaded", event => {
 		});
 	}
 
-	const registerAsRetail = document.querySelector("#registerAsRetail");
-	const registerAsWholesale = document.querySelector("#registerAsWholesale");
+	// const registerAsRetail = document.querySelector("#registerAsRetail");
+	// const registerAsWholesale = document.querySelector("#registerAsWholesale");
 
-	if (registerAsRetail && registerAsWholesale) {
-		//showing form after choosing customer type
-		const signUpForm = document.querySelector(".sign-up-wrapper form");
+	// if (registerAsRetail && registerAsWholesale) {
+	// 	//showing form after choosing customer type
+	// 	const signUpForm = document.querySelector(".sign-up-wrapper form");
 
-		//switching input fields betweem wholesale and retail customer
+	// 	//switching input fields betweem wholesale and retail customer
 
-		const customRegisterFormFields = document.querySelectorAll(
-			".my-custom-form-field"
-		);
+	// 	const customRegisterFormFields = document.querySelectorAll(
+	// 		".my-custom-form-field"
+	// 	);
 
-		const customRegisterFormFieldsInputs = document.querySelectorAll(
-			".my-custom-form-field input"
-		);
-		const wholesaleInfo = document.querySelector(".wholesale-info");
+	// 	const customRegisterFormFieldsInputs = document.querySelectorAll(
+	// 		".my-custom-form-field input"
+	// 	);
+	// 	const wholesaleInfo = document.querySelector(".wholesale-info");
 
-		registerAsRetail.addEventListener("click", function retailFunction() {
-			registerAsWholesale.classList.contains("customer-type-chosen")
-				? registerAsWholesale.classList.remove("customer-type-chosen")
-				: "";
+	// 	registerAsRetail.addEventListener("click", function retailFunction() {
+	// 		registerAsWholesale.classList.contains("customer-type-chosen")
+	// 			? registerAsWholesale.classList.remove("customer-type-chosen")
+	// 			: "";
 
-			this.classList.add("customer-type-chosen");
+	// 		this.classList.add("customer-type-chosen");
 
-			wholesaleInfo.classList.contains("show-info")
-				? wholesaleInfo.classList.remove("show-info")
-				: "";
+	// 		wholesaleInfo.classList.contains("show-info")
+	// 			? wholesaleInfo.classList.remove("show-info")
+	// 			: "";
 
-			customRegisterFormFields.forEach(field => {
-				field.style.display = "none";
-			});
+	// 		customRegisterFormFields.forEach(field => {
+	// 			field.style.display = "none";
+	// 		});
 
-			customRegisterFormFieldsInputs.forEach(field => {
-				field.required = false;
-			});
+	// 		customRegisterFormFieldsInputs.forEach(field => {
+	// 			field.required = false;
+	// 		});
 
-			signUpForm.classList.add("form-type-chosen");
-		});
+	// 		signUpForm.classList.add("form-type-chosen");
+	// 	});
 
-		registerAsWholesale.addEventListener("click", function wholesaleFunction() {
-			registerAsRetail.classList.contains("customer-type-chosen")
-				? registerAsRetail.classList.remove("customer-type-chosen")
-				: "";
+	// 	registerAsWholesale.addEventListener("click", function wholesaleFunction() {
+	// 		registerAsRetail.classList.contains("customer-type-chosen")
+	// 			? registerAsRetail.classList.remove("customer-type-chosen")
+	// 			: "";
 
-			this.classList.add("customer-type-chosen");
+	// 		this.classList.add("customer-type-chosen");
 
-			wholesaleInfo.classList.add("show-info");
+	// 		wholesaleInfo.classList.add("show-info");
 
-			customRegisterFormFields.forEach(field => {
-				field.style.display = "block";
-			});
+	// 		customRegisterFormFields.forEach(field => {
+	// 			field.style.display = "block";
+	// 		});
 
-			customRegisterFormFieldsInputs.forEach(field => {
-				field.required = true;
-			});
+	// 		customRegisterFormFieldsInputs.forEach(field => {
+	// 			field.required = true;
+	// 		});
 
-			signUpForm.classList.add("form-type-chosen");
-		});
-	}
+	// 		signUpForm.classList.add("form-type-chosen");
+	// 	});
+	// }
 
 	const showSection = () => {
 		// const categoriesShowcaseSection = document.querySelector(
@@ -942,24 +943,23 @@ window.addEventListener("DOMContentLoaded", event => {
 		".category-short-description"
 	);
 
-
 	categoryShortDescription &&
 		new removeEmptyParagraphs(categoryShortDescription);
 
-
 	const showActiveShippingMethod = () => {
-
 		const allShippingMethods = document.querySelectorAll(".shipping_method");
 
-		allShippingMethods && allShippingMethods.forEach(method => {
-			method && method.checked && method.closest("LI") ? method.closest("LI").classList.add("shipping-method--active") : '';
-		});
-	}
+		allShippingMethods &&
+			allShippingMethods.forEach(method => {
+				method && method.checked && method.closest("LI")
+					? method.closest("LI").classList.add("shipping-method--active")
+					: "";
+			});
+	};
 
 	showActiveShippingMethod();
 	jQuery(document).on("updated_shipping_method", showActiveShippingMethod);
 	jQuery(document).on("updated_checkout", showActiveShippingMethod);
-
 });
 
 // const closePromo = document.querySelector("#close-promo");

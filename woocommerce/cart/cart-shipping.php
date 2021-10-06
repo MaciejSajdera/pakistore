@@ -28,8 +28,8 @@ $calculator_text          = '';
 
 
 
-	<th><?php echo wp_kses_post( $package_name ); ?></th>
-	<td data-title="<?php echo esc_attr( $package_name ); ?>">
+	<!-- <th><?php echo wp_kses_post( $package_name ); ?></th> -->
+	<td colspan=100% data-title="<?php echo esc_attr( $package_name ); ?>">
 		<?php if ( $available_methods ) : ?>
 
 			<?php

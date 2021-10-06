@@ -258,6 +258,12 @@ input[type="checkbox"] {
 		color: $color_baby_blue;
 		font-family: $font_headers;
 		@include fluid-type($min_width, $max_width, 12px, 14px);
+		width: 175px;
+		text-align: center;
+
+		@media screen and (max-width: 450px) {
+			width: 100px;
+		}
 
 		&:before {
 			@media screen and (max-width: 992px) {
@@ -482,7 +488,7 @@ div.woof_info_popup {
 	}
 
 	&__submit {
-		margin: inherit !important;
+		margin: 2rem 0 0 !important;
 	}
 }
 
@@ -587,7 +593,7 @@ div.woof_info_popup {
 .slick-prev,
 .slick-next {
 	z-index: 1 !important;
-	display: none!important;
+	display: none !important;
 }
 
 .return-to-shop {
