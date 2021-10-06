@@ -88,7 +88,9 @@ if ( $rating_count > 0 ) : ?>
 
 	<div class="product-info__value">
 
-	<?php do_action("my_eraty_display") ?>
+	<?php 
+	// do_action("my_eraty_display")
+	 ?>
 
 	</div>
 </div> -->

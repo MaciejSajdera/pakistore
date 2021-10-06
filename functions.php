@@ -1399,10 +1399,10 @@ function remove_rel( $args, $product ) {
 
 /* E-Raty */
 
-// remove_filter('woocommerce_after_add_to_cart_button', 'eraty_product_evaluate_button');
+remove_filter('woocommerce_after_add_to_cart_button', 'eraty_product_evaluate_button');
 // add_action('my_eraty_display', 'eraty_product_evaluate_button', 10);
 
-// remove_action('woocommerce_proceed_to_checkout', 'eraty_basket_evaluate_button');
+remove_action('woocommerce_proceed_to_checkout', 'eraty_basket_evaluate_button');
 // add_action('woocommerce_cart_eraty_display', 'eraty_basket_evaluate_button');
 
 
